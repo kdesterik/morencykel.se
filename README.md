@@ -1,2 +1,2 @@
-# morencykel.se
-Webshop for companies: MorenCykel, HuddingeCykel and KarrtorpCykel
+# MorenCykel.se
+Nerom AB: eCommerce platform
