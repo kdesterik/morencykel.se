@@ -1,0 +1,65 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+@white:					#FFF;
+@gray-base:             #000;
+@gray-darker:           lighten(@gray-base, 7%);    // #121212
+@gray-dark:             lighten(@gray-base, 35%);   // #333
+@gray:                  lighten(@gray-base, 63%);   // #a1a1a1
+@gray-light:            lighten(@gray-base, 78%);   // #c3c3c3
+@gray-lighter:          lighten(@gray-base, 93%);   // #eee
+
+@brand-primary:         #86e706;
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+@body-bg:               @white;
+//** Global text color on `<body>`.
+@text-color:            @gray-darker;
+
+//** Global textual link color.
+@link-color:            @gray;
+//** Link hover color set via `darken()` function.
+@link-hover-color:      @gray-darker;
+//** Link hover decoration.
+@link-hover-decoration: none;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+@font-family-sans-serif:  "Vitesse Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-size-base:          16px;
+@font-size-large:         18px;
+@font-size-small:         14px;
+@font-size-h1:            60px;
+@font-size-h2:            48px;
+@font-size-h3:            36px;
+@font-size-h4:            24px;
+@font-size-h5:            21px;
+@font-size-h6:            18px;
+@line-height-base:        1.5; // 24/16
+
+
+
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+@grid-gutter-width:       @line-height-computed;

@@ -1,0 +1,37 @@
+{
+  "name": "MorenCykel.se",
+  "version": "1.0.0",
+  "description": "Nerom AB: eCommerce platform",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt acceptance"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kdesterik/morencykel.se.git"
+  },
+  "author": "Koen Dirk van Esterik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kdesterik/morencykel.se/issues"
+  },
+  "homepage": "https://github.com/kdesterik/morencykel.se",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^3.0.0",
+    "grunt-bower-concat": "^0.4.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-rename": "0.0.3",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-ftp-deploy": "^0.1.10",
+    "grunt-open": "^0.2.3",
+    "grunt-webfont": "^0.5.3",
+    "jshint-stylish": "^1.0.2",
+    "load-grunt-tasks": "^3.1.0"
+  }
+}

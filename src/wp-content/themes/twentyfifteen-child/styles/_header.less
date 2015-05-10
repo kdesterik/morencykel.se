@@ -1,0 +1,43 @@
+#header {
+
+	.container {
+
+		// background-image: url( './images/grid-lg.png' );
+		// background-size: 291px 24px;
+		// background-repeat: repeat;
+		// background-position: -12px top;
+
+		.site-title {
+
+			font-family: @headings-font-family;
+			font-size: @font-size-h4;
+			font-weight: normal;
+			line-height: @line-height-base;
+			margin: -1px 0 1px;
+
+			a {
+				outline-color: transparent;
+
+				&:hover, &:focus {
+
+					color: @brand-primary;
+				}
+			}
+		}
+
+		.site-description {
+
+			margin: -( @line-height-computed + 1 ) 0 1px;	
+			font-family: @headings-font-family;
+			font-size: @font-size-small;
+			line-height: @line-height-base;
+			color: @gray;
+			opacity: 1;
+		}
+
+		.small {
+
+			margin: -1px 0 1px;			
+		}
+	}
+}

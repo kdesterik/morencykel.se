@@ -1,0 +1,84 @@
+//
+// Typography
+// --------------------------------------------------
+
+
+// Headings
+// -------------------------
+
+h1, h2, h3, h4 {
+
+	margin: 0 0 0 0;
+
+	&:before {
+		content: '';
+		display: inline-block;
+		vertical-align: baseline;
+		height: @line-height-computed*2;
+	}
+
+	&:after {
+		content: '';
+		display: inline-block;
+		vertical-align: -@line-height-computed;
+		height: @line-height-computed*2;
+	}
+}
+
+
+// Body text
+// -------------------------
+
+p {
+	margin: 0 0 0 0;
+
+	&:before {
+		content: '';
+		display: inline-block;
+		vertical-align: baseline;
+		height: @line-height-computed;
+	}
+
+	&:after {
+		content: '';
+		display: inline-block;
+		vertical-align: -@line-height-computed;
+		height: @line-height-computed;
+	}
+}
+
+
+// Emphasis & misc
+// -------------------------
+
+// Ex: (12px small font / 14px base font) * 100% = about 85%
+small,
+.small {
+	font-size: @font-size-small;
+}
+
+
+// Lists
+// -------------------------
+
+// Unordered and Ordered lists
+ul,
+ol {
+	margin: 0 0 0 0;
+
+	li {
+		// margin: 0 0 0 0;
+	}
+}
+
+
+// Misc
+// -------------------------
+
+.up {
+	margin-top: -@line-height-computed;
+}
+
+.down {
+	margin-top: @line-height-computed;
+}

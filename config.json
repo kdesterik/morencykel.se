@@ -1,0 +1,5 @@
+{
+	"src": 		 "./src/wp-content/themes/twentyfifteen-child",
+	"dist": 	 "./dist/wp-content/themes/twentyfifteen-child",
+	"local": 	 "http://local.morencykel.se/"
+}
