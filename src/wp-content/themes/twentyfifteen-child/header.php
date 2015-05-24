@@ -23,31 +23,62 @@
 
 <body <?php body_class(); ?>>
 
+<div class="modal fade" id="menu" tabindex="-1" role="dialog" aria-labelledby="menuLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-9">
+								<?php echo get_network_sites_dropdown(); ?>
+								<?php $description = get_bloginfo( 'description', 'display' );
+								if ( $description || is_customize_preview() ) : ?>
+									<p class="site-description"><?php echo $description; ?></p>
+								<?php endif; ?>
+						</div>
+						<div class="col-lg-3">
+							<div class="close">
+								<p class="text-right down"><a href="#" data-dismiss="modal">Close</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-body">
+				<?php echo render_menu(); ?>
+			</div>
+			<div class="modal-footer"></div>
+		</div>
+	</div>
+</div>
+
 <div id="page" class="hfeed site">
 
 	<header id="header">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9">
-						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+						<?php echo get_network_sites_dropdown(); ?>
 						<?php $description = get_bloginfo( 'description', 'display' );
 						if ( $description || is_customize_preview() ) : ?>
 							<p class="site-description"><?php echo $description; ?></p>
 						<?php endif; ?>
 				</div>
 				<div class="col-lg-3">
-					<div class="row down">
-						<div class="col-lg-5">
-							<p class="small"><a href="#">Login</a> / <a href="#">Join</a></p>
-						</div>
-						<div class="col-lg-7">
-							<p class="small text-right"><a href="#">4</a> / <a href="#">90,000.00 SEK</a></p>
-						</div>
-					</div>
+					<?php if ( has_nav_menu( 'top' ) ) : ?>
+					<nav id="top-navigation" class="top-navigation" role="navigation">
+						<?php
+							wp_nav_menu( array(
+								'menu_class'     => 'breadcrumb text-right down',
+								'theme_location' => 'top',
+								'depth'          => 1,
+							) );
+						?>
+					</nav>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
 	</header>
 
 	<div id="content" class="site-content">
-		<div class="container">

@@ -1,19 +1,5 @@
 <?php
 
-if ( ! function_exists( 'twentyfifteen_setup' ) ) :
-function twentyfifteen_child_setup() {
-
-	// This theme uses additional wp_nav_menu() in two more locations.
-	register_nav_menus( array(
-		'primary' 	=> __( 'Primary Menu',      'twentyfifteen' ),
-		'secondary'	=> __( 'Secondary Menu',    'twentyfifteen' ),
-		'legal'  	=> __( 'Legal Menu', 		'twentyfifteen' ),
-		'social'  	=> __( 'Social Links Menu', 'twentyfifteen' ),
-	) );
-}
-endif; // twentyfifteen_child_setup
-add_action( 'after_setup_theme', 'twentyfifteen_child_setup' );
-
 /**
  * Global function to retrieve the relative child template directory
  */
@@ -60,9 +46,9 @@ function twentyfifteen_child_scripts(){
 		wp_enqueue_script( 'twentyfifteen-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20141010' );
 	}
 
-	wp_enqueue_script( 'twentyfifteen-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20150330', true );
+	wp_enqueue_script( 'twentyfifteen-script', get_child_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20150330', true );
 	wp_localize_script( 'twentyfifteen-script', 'screenReaderText', array(
-		'expand'   => '<span class="screen-reader-text">' . __( 'expand child menu', 'twentyfifteen' ) . '</span>',
+		'expand'	 => '<span class="screen-reader-text">' . __( 'expand child menu', 'twentyfifteen' ) . '</span>',
 		'collapse' => '<span class="screen-reader-text">' . __( 'collapse child menu', 'twentyfifteen' ) . '</span>',
 	));
 
@@ -75,6 +61,14 @@ function twentyfifteen_child_scripts(){
 add_action( 'wp_enqueue_scripts', 'twentyfifteen_child_scripts' );
 
 /**
+ * Add additional top menu
+ */
+function register_top_menu() {
+  register_nav_menu( 'top', __( 'Top Menu' ));
+}
+add_action( 'init', 'register_top_menu' );
+
+/**
  * enable livereload on localhost
  */
 function livereload() {
@@ -84,6 +78,215 @@ function livereload() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'livereload' );
+
+/**
+ * Get network sites in dropdown
+ */
+function get_network_sites_dropdown(){
+
+	$sites 	= wp_get_sites();
+	$html 	= '';
+	$html  .= '<div class="dropdown">';
+	$html  .= '<a href="#" data-toggle="dropdown" aria-expanded="true"><h1 class="site-title">MorenCykel</h1></a>';
+	$html  .= '<ul class="dropdown-menu" role="menu">';
+
+	foreach( $sites as $site ){
+
+		$id 		= $site[ 'blog_id' ];
+		$path 		= $site[ 'path' ];
+		$current 	= get_current_blog_id();
+
+		switch_to_blog( $id );
+		$title 		= get_bloginfo( 'name' );
+		$url 		= network_site_url( $path );
+
+		restore_current_blog();
+
+		if( $id == $current ){
+
+			$html .= sprintf( '<li role="presentation" class="active"><a role="menuitem" tabindex="-1" href="%s">%s</a></li>', $url, $title );
+
+		} else {
+
+			$html .= sprintf( '<li role="presentation"><a role="menuitem" tabindex="-1" href="%s">%s</a></li>', $url, $title );
+		}
+	}
+
+	$html .= '</ul>';
+	$html .= '</div>';
+
+	return $html;
+}
+
+/**
+ * Add data-toggle: modal - attribute to menu-item
+ */
+
+add_filter( 'nav_menu_link_attributes', 'menu_menu_atts', 10, 3 );
+function menu_menu_atts( $atts, $item, $args ){
+
+	// inspect $item
+	if( $item->post_name == 'menu' ){
+
+		$atts[ 'data-toggle' ] = 'modal';
+		$atts[ 'data-target' ] = '#menu';
+	}
+	return $atts;
+}
+
+
+/**
+ * Render menu - to be used on Menu Modal
+ */
+function render_menu() {
+	$arguments = array(
+		'theme_location' => 'primary',
+		'items_wrap'     => '<div class="container">%3$s</div>',
+		'walker'		 => new Menu_Walker()
+	);
+	return wp_nav_menu( $arguments );
+}
+
+
+/**
+ * Custom Walker_Nav_Menu to walk through Menu navigation
+ */
+class Menu_Walker extends Walker_Nav_Menu {
+
+	public function start_lvl( &$output, $depth = 0, $args = array() ){
+
+		$output .= '';
+	}
+
+	public function end_lvl( &$output, $depth = 0, $args = array() ){
+
+		$output .= '';
+	}
+
+	public function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ){
+
+		if( $depth == 0 ){
+
+			$output .= '<div class="row">';
+			$output .= '<div class="col-lg-12"><hr/></div>';
+			$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
+		}
+
+		if( $depth == 1 ){
+
+			if( $this->get_previous_depth() == 3 ){
+
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
+
+			} else if( $this->get_previous_depth() == 1 ){
+
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
+
+			} else {
+
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
+			}
+		}
+
+		if( $depth == 2 ){
+
+			if( $this->get_previous_depth() == 3 ){
+
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
+
+			} else {
+
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
+			}
+		}
+
+		if( $depth == 3 ){
+
+			if( $this->get_previous_depth() == 3 ){
+
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
+
+			} else {
+
+				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
+			}
+		}
+
+		$output .= sprintf( '<a href="%s" class="%s">%s</a>', esc_attr( $object->url ), implode( ' ', $object->classes ), esc_attr( $object->title ));
+		$output .= '</div>';
+
+		$this->set_previous_depth( $depth );
+	}
+
+	public function end_el( &$output, $object, $depth = 0, $args = array() ){
+
+		if( $depth == 0 ){
+
+			$output .= '</div>';
+		}
+	}
+
+
+	private $previous = 0;
+	public function get_previous_depth(){ return $this->previous; }
+	public function set_previous_depth( $value ){ $this->previous = $value; }
+}
+
+
+
+/**
+ * Render carousel - to be used on Home Page
+ */
+function render_carousel(){
+
+	$slides		 = simple_fields_fieldgroup( 'home_page_carousel' );
+	$count		 = 0;
+	$html 	 	 = '<div class="carousel" data-ride="carousel" data-pause="hover">';
+	$html 		.= '<div class="carousel-inner" role="listbox">';
+
+	foreach( $slides as $slide ){
+
+		$html 	.= ( $count == 0 ) ? '<div class="item active">' : '<div class="item">';
+
+		$html 	.= sprintf( '<div class="cover" style="background-image: url( %s );"></div>', $slide[ 'url' ] );
+
+		$html 	.= '<div class="caption">';
+		$html 	.= '<div class="container">';
+
+		$html 	.= '<div class="row">';
+		$html 	.= '<div class="col-lg-4">';
+
+		$html 	.= '<h1>Hello world</h1>';
+		$html 	.= '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pretium nibh in lorem sodales, ornare dignissim neque scelerisque.</p>';
+		$html 	.= '<p><a href="#">Link to page</a></p>';
+
+		$html 	.= '</div>';
+		$html 	.= '</div>';
+
+		$html 	.= '</div>';
+		$html 	.= '</div>';
+
+		$html 	.= '</div>';
+
+		$count 	+= 1;
+	}
+	
+	$html 	.= '</div>';
+	$html 	.= '</div>';
+
+	return $html;
+}
+
+
 
 
 ?>

@@ -28,6 +28,7 @@
 @import './bower_components/bootstrap/less/scaffolding.less';
 @import './bower_components/bootstrap/less/type.less';
 @import './bower_components/bootstrap/less/grid.less';
+@import './bower_components/bootstrap/less/buttons.less';
 
 // Overwrite core CSS
 @import '_scaffolding.less';
@@ -35,14 +36,22 @@
 
 // Components
 @import './bower_components/bootstrap/less/component-animations.less';
+@import './bower_components/bootstrap/less/dropdowns.less';
+@import './bower_components/bootstrap/less/breadcrumbs.less';
 
-// Plugins
+// Components w/ JavaScript
+@import './bower_components/bootstrap/less/modals.less';
+@import './bower_components/bootstrap/less/carousel.less';
 
-// Custom
-@import '_header.less';
-@import '_footer.less';
-@import '_home.less';
+// Overwrite components w/ JavaScript
+@import '_modals.less';
 
 // Utility classes
 @import './bower_components/bootstrap/less/utilities.less';
 @import './bower_components/bootstrap/less/responsive-utilities.less';
+
+// Custom components
+@import '_header.less';
+@import '_footer.less';
+@import '_menu.less';
+@import '_home.less';

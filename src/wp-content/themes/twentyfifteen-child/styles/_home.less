@@ -1,14 +1,74 @@
 .home {
 
-	.cover {
+	width: 100%;
+	height: 100%;
 
-		position: absolute;
-		top: 0;
-		left: 0;
+	.site {
+
 		width: 100%;
 		height: 100%;
-		background-repeat: no-repeat;
-		background-size: cover;
-		z-index: -10;
+
+		.site-content {
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			margin: 0 0 0 0;
+			z-index: -10;
+
+			.content-area {
+
+				width: 100%;
+				height: 100%;
+
+				.site-main {
+
+					width: 100%;
+					height: 100%;
+
+					.carousel {
+
+						width: 100%;
+						height: 100%;
+
+						.carousel-inner {
+
+							width: 100%;
+							height: 100%;
+
+							.item {
+
+								width: 100%;
+								height: 100%;
+
+								.cover, .caption {
+
+									position: absolute;
+									top: 0;
+									left: 0;
+									width: 100%;
+									height: 100%;
+								}
+
+								.cover {
+
+									background-repeat: no-repeat;
+									background-size: cover;
+									background-position: center center;
+									.opacity( 0.1 );
+								}
+
+								.caption {
+
+									margin: (( @line-height-computed * 9 ) - 6 ) 0 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
