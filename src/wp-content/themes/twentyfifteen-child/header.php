@@ -27,23 +27,45 @@
 	<header id="header" class="site-header">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<?php echo get_network_sites_dropdown(); ?>
 				</div>
-				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
-					<!-- 
-					<?php if ( has_nav_menu( 'top' ) ) : ?>
-					<nav id="top-navigation" class="top-navigation" role="navigation">
-						<?php
-							wp_nav_menu( array(
-								'menu_class'     => 'breadcrumb text-right down',
-								'theme_location' => 'top',
-								'depth'          => 1,
-							) );
-						?>
-					</nav>
-					<?php endif; ?>
-					-->
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="row">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+							<?php if ( has_nav_menu( 'primary' ) ) : ?>
+							<nav class="navigation" role="navigation">
+								<?php
+									wp_nav_menu( array(
+										'theme_location' => 'primary',
+									) );
+								?>
+							</nav>
+							<?php endif; ?>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+							<?php if ( has_nav_menu( 'secondary' ) ) : ?>
+							<nav class="navigation" role="navigation">
+								<?php
+									wp_nav_menu( array(
+										'theme_location' => 'secondary',
+									) );
+								?>
+							</nav>
+							<?php endif; ?>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+							<?php if ( has_nav_menu( 'social' ) ) : ?>
+							<nav class="navigation" role="navigation">
+								<?php
+									wp_nav_menu( array(
+										'theme_location' => 'social',
+									) );
+								?>
+							</nav>
+							<?php endif; ?>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

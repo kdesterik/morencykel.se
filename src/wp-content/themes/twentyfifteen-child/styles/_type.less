@@ -70,9 +70,21 @@ small,
 ul,
 ol {
 	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	list-style: none;
 
-	li {
-		// margin: 0 0 0 0;
+	&:before {
+		content: '';
+		display: inline-block;
+		vertical-align: baseline;
+		height: @line-height-computed;
+	}
+
+	&:after {
+		content: '';
+		display: inline-block;
+		vertical-align: -@line-height-computed;
+		height: @line-height-computed;
 	}
 }
 

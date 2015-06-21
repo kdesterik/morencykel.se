@@ -23,7 +23,7 @@ body {
 
 		.site-header {
 
-			margin: 0 0 0 0;
+			margin: 0 0 ( @line-height-computed * 2 );
 			padding: 0 0 0 0;
 
 			.site-title {}
@@ -31,7 +31,7 @@ body {
 
 		.site-content {
 
-			margin: ( @line-height-computed * 5 ) 0;
+			margin: 0 0 0 0;
 			display: block;
 			width: auto;
 			float: none;
@@ -88,6 +88,16 @@ body {
 			width: auto;
 			background-color: transparent;
 			box-shadow: none;
+
+			.widget {
+
+				margin: 0 0 0 0;
+				padding: 0 0 0 0;
+
+				p {
+					margin: 0 0 0 0;
+				}
+			}
 		}
 	}
 }

@@ -18,12 +18,12 @@ add_action( 'init', 'remove_twentyfifteen_scripts' );
 
 
 /**
- * Add additional top menu
+ * Add additional menus
  */
-function register_top_menu() {
-  register_nav_menu( 'top', __( 'Top Menu' ));
+function register_secondary_menu() {
+  register_nav_menu( 'secondary', __( 'Secondary Menu' ));
 }
-add_action( 'init', 'register_top_menu' );
+add_action( 'init', 'register_secondary_menu' );
 
 
 /**
