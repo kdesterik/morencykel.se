@@ -14,15 +14,20 @@ h1, h2, h3, h4 {
 		content: '';
 		display: inline-block;
 		vertical-align: baseline;
-		height: @line-height-computed*2;
+		height: @line-height-computed * 2;
 	}
 
 	&:after {
 		content: '';
 		display: inline-block;
 		vertical-align: -@line-height-computed;
-		height: @line-height-computed*2;
+		height: @line-height-computed * 2;
 	}
+}
+
+h1 {
+	margin-top: -3px;
+	line-height: @line-height-computed * 3;
 }
 
 

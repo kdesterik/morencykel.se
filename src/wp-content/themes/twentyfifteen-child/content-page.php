@@ -9,7 +9,6 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
@@ -33,11 +32,8 @@
 				</div><!-- .entry-content -->
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<?php edit_post_link( __( 'Edit', 'twentyfifteen' ), '<footer class="entry-footer"><span class="edit-link">', '</span></footer><!-- .entry-footer -->' ); ?>
-			</div>
-		</div>
-	</div>
 
+		<?php edit_post_link( __( 'Edit', 'twentyfifteen' ), '<div class="row"><div class="col-lg-12"><footer class="entry-footer"><span class="edit-link">', '</span></footer></div></div><!-- .entry-footer -->' ); ?>
+			
+	</div>
 </article><!-- #post-## -->

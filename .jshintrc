@@ -13,5 +13,7 @@
     "sub": true,
     "boss": true,
     "jquery": true,
-    "globals": {}
+    "globals": {
+        "Snap": true
+    }
 }

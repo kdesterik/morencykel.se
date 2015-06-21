@@ -7,6 +7,7 @@ function get_child_template_directory_uri() {
 	return get_stylesheet_directory_uri();
 }
 
+
 /**
  * Remove initial parent theme load scripts function
  */
@@ -14,6 +15,16 @@ function remove_twentyfifteen_scripts() {
 	remove_action('wp_enqueue_scripts', 'twentyfifteen_scripts');
 }
 add_action( 'init', 'remove_twentyfifteen_scripts' );
+
+
+/**
+ * Add additional top menu
+ */
+function register_top_menu() {
+  register_nav_menu( 'top', __( 'Top Menu' ));
+}
+add_action( 'init', 'register_top_menu' );
+
 
 /**
  * main theme asset hook
@@ -60,16 +71,22 @@ function twentyfifteen_child_scripts(){
 }
 add_action( 'wp_enqueue_scripts', 'twentyfifteen_child_scripts' );
 
-/**
- * Add additional top menu
- */
-function register_top_menu() {
-  register_nav_menu( 'top', __( 'Top Menu' ));
-}
-add_action( 'init', 'register_top_menu' );
 
 /**
- * enable livereload on localhost
+ * Adjust woocommerce template hooks
+ */
+function woocommerce_template_hooks(){
+
+	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+}
+add_action( 'init', 'woocommerce_template_hooks' );
+
+
+/**
+ * Enable livereload on localhost
  */
 function livereload() {
 	if( in_array( $_SERVER[ 'REMOTE_ADDR' ], array( '127.0.0.1', '::1' ))){
@@ -78,6 +95,7 @@ function livereload() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'livereload' );
+
 
 /**
  * Get network sites in dropdown
@@ -116,22 +134,6 @@ function get_network_sites_dropdown(){
 	$html .= '</div>';
 
 	return $html;
-}
-
-/**
- * Add data-toggle: modal - attribute to menu-item
- */
-
-add_filter( 'nav_menu_link_attributes', 'menu_menu_atts', 10, 3 );
-function menu_menu_atts( $atts, $item, $args ){
-
-	// inspect $item
-	if( $item->post_name == 'menu' ){
-
-		$atts[ 'data-toggle' ] = 'modal';
-		$atts[ 'data-target' ] = '#menu';
-	}
-	return $atts;
 }
 
 
@@ -248,7 +250,7 @@ class Menu_Walker extends Walker_Nav_Menu {
  */
 function render_carousel(){
 
-	$slides		 = simple_fields_fieldgroup( 'home_page_carousel' );
+	$slides		 = simple_fields_fieldgroup( 'home_page_cover' );
 	$count		 = 0;
 	$html 	 	 = '<div class="carousel" data-ride="carousel" data-pause="hover">';
 	$html 		.= '<div class="carousel-inner" role="listbox">';
@@ -257,17 +259,17 @@ function render_carousel(){
 
 		$html 	.= ( $count == 0 ) ? '<div class="item active">' : '<div class="item">';
 
-		$html 	.= sprintf( '<div class="cover" style="background-image: url( %s );"></div>', $slide[ 'url' ] );
+		$html 	.= sprintf( '<div class="cover" style="background-image: url( %s );"></div>', $slide[ 'cover_image' ][ 'url' ] );
 
 		$html 	.= '<div class="caption">';
 		$html 	.= '<div class="container">';
 
 		$html 	.= '<div class="row">';
-		$html 	.= '<div class="col-lg-4">';
+		$html 	.= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">';
 
-		$html 	.= '<h1>Hello world</h1>';
-		$html 	.= '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pretium nibh in lorem sodales, ornare dignissim neque scelerisque.</p>';
-		$html 	.= '<p><a href="#">Link to page</a></p>';
+		$html 	.= sprintf( '<h1>%s</h1>', $slide[ 'cover_title' ]);
+		$html 	.= sprintf( '<p>%s</p>', $slide[ 'cover_description' ]);
+		$html 	.= sprintf( '<p><a href="%s">Read more</a></p>', $slide[ 'cover_link' ][ 'permalink' ]);
 
 		$html 	.= '</div>';
 		$html 	.= '</div>';
@@ -285,8 +287,6 @@ function render_carousel(){
 
 	return $html;
 }
-
-
 
 
 ?>

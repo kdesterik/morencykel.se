@@ -23,48 +23,15 @@
 
 <body <?php body_class(); ?>>
 
-<div class="modal fade" id="menu" tabindex="-1" role="dialog" aria-labelledby="menuLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-9">
-								<?php echo get_network_sites_dropdown(); ?>
-								<?php $description = get_bloginfo( 'description', 'display' );
-								if ( $description || is_customize_preview() ) : ?>
-									<p class="site-description"><?php echo $description; ?></p>
-								<?php endif; ?>
-						</div>
-						<div class="col-lg-3">
-							<div class="close">
-								<p class="text-right down"><a href="#" data-dismiss="modal">Close</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-body">
-				<?php echo render_menu(); ?>
-			</div>
-			<div class="modal-footer"></div>
-		</div>
-	</div>
-</div>
-
 <div id="page" class="hfeed site">
-
-	<header id="header">
+	<header id="header" class="site-header">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-9">
-						<?php echo get_network_sites_dropdown(); ?>
-						<?php $description = get_bloginfo( 'description', 'display' );
-						if ( $description || is_customize_preview() ) : ?>
-							<p class="site-description"><?php echo $description; ?></p>
-						<?php endif; ?>
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+					<?php echo get_network_sites_dropdown(); ?>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+					<!-- 
 					<?php if ( has_nav_menu( 'top' ) ) : ?>
 					<nav id="top-navigation" class="top-navigation" role="navigation">
 						<?php
@@ -76,9 +43,9 @@
 						?>
 					</nav>
 					<?php endif; ?>
+					-->
 				</div>
 			</div>
 		</div>
 	</header>
-
 	<div id="content" class="site-content">

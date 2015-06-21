@@ -10,10 +10,11 @@ module.exports = function(grunt) {
 		config: grunt.file.readJSON( 'config.json' ),
 
 		clean: {
-			development: {
+			default: {
 				src: [ 
 					'<%= config.dist %>/*.php',
 					'<%= config.dist %>/page-templates/*.php',
+					'<%= config.dist %>/woocommerce/**/*.php',
 					'<%= config.dist %>/*.png',
 					'<%= config.dist %>/fonts/*.*',
 					'<%= config.dist %>/js/scripts.js',
@@ -24,13 +25,14 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-			development: {
+			default: {
 				expand: true,
 				dest: '<%= config.dist %>/',
 				cwd: '<%= config.src %>/',
 				src: [ 
 					'*.php',
-					'page-templates/*.php', 
+					'page-templates/*.php',
+					'woocommerce/**/*.php',
 					'*.png', 
 					'fonts/*.*', 
 					'js/*.*', 
@@ -39,33 +41,45 @@ module.exports = function(grunt) {
 			},
 		},
 
-		webfont: {
-			development: {
-				src: '<%= config.src %>/icons/*.svg',
-				dest: '<%= config.dist %>/fonts/',
-				destCss: '<%= config.src %>/styles/',
-				options: {
-					engine: 'node',
-					font: 'icons',
-					stylesheet: 'less',
-					relativeFontPath: './fonts/',
-					destHtml: '<%= config.src %>/icons/'
-				}
+		jshint: {
+			options: {
+				jshintrc: '.jshintrc',
+				reporter: require( 'jshint-stylish' )
+			},
+			default: [
+				'Gruntfile.js',
+				'<%= config.src %>/scripts/**/*.js'
+			]
+		},
+
+		concat: {
+			default: {
+				src: [
+					'<%= config.src %>/scripts/scripts.js',
+				],
+				dest: '<%= config.dist %>/js/scripts.js'
 			}
 		},
 
-		rename: {
-			development: {
-				files: [
-					{ 
-						src: [
-							'<%= config.src %>/styles/icons.less'
-						],
-						dest: [
-							'<%= config.src %>/styles/_icons.less'
-						]
-					},
-				]
+		bower_concat: {
+			default: {
+				dest: '<%= config.dist %>/js/libs.js',
+				dependencies: {},
+				exclude: [
+			        'jquery',
+			        'doc-ready',
+			        'eventEmitter',
+			        'eventie',
+			        'fizzy-ui-utils',
+			        'get-size',
+			        'get-style-property',
+			        'matches-selector',
+			        'outlayer'
+			    ],
+			    mainFiles: {
+					'bootstrap': 'dist/js/bootstrap.min.js',
+					'masonry': 'dist/masonry.pkgd.min.js',
+				}
 			}
 		},
 
@@ -75,7 +89,7 @@ module.exports = function(grunt) {
 					'<%= config.dist %>/style.css': '<%= config.src %>/styles/style.less'
 				}
 			},
-			production: {
+			acceptance: {
 				options: {
 					cleancss: true,
 				},
@@ -83,6 +97,20 @@ module.exports = function(grunt) {
 					'<%= config.dist %>/style.css': '<%= config.src %>/styles/style.less'
 				}
 			}
+		},
+
+		uglify: {
+			development: {
+				files: {
+					'<%= config.dist %>/js/libs.js': '<%= config.dist %>/js/libs.js'
+				}
+			},
+			acceptance: {
+				files: {
+					'<%= config.dist %>/js/libs.js': '<%= config.dist %>/js/libs.js',
+					'<%= config.dist %>/js/scripts.js': '<%= config.dist %>/js/scripts.js'
+				}
+			},
 		},
 
 		autoprefixer: {
@@ -101,43 +129,10 @@ module.exports = function(grunt) {
 			development: {
 				src: '<%= config.dist %>/style.css'
 			},
-			production: {
+			acceptance: {
 				src: '<%= config.dist %>/style.css'
 			},
 		},
-
-		jshint: {
-			options: {
-				jshintrc: '.jshintrc',
-				reporter: require( 'jshint-stylish' )
-			},
-			development: [
-				'Gruntfile.js',
-			]
-		},
-
-		bower_concat: {
-			development: {
-				dest: '<%= config.dist %>/js/libs.js',
-				dependencies: {
-					// 'bootstrap': 'jquery',
-				},
-				exclude: [
-			        'jquery',
-			    ],
-			}
-		},
-
-		concat: {
-			development: {
-				src: [
-					'<%= config.src %>/scripts/scripts.js',
-				],
-				dest: '<%= config.dist %>/js/scripts.js'
-			}
-		},
-
-		uglify: {},
 
 		watch: {
 			development: {
@@ -183,19 +178,53 @@ module.exports = function(grunt) {
 		// 		exclusions: [ '<%= config.dist %>/**/.DS_Store' ]
 		// 	},
 		// }
+
+		webfont: {
+			icons: {
+				src: '<%= config.src %>/icons/*.svg',
+				dest: '<%= config.dist %>/fonts/',
+				destCss: '<%= config.src %>/styles/',
+				options: {
+					engine: 'node',
+					font: 'icons',
+					stylesheet: 'less',
+					relativeFontPath: './fonts/',
+					destHtml: '<%= config.src %>/icons/'
+				}
+			}
+		},
+
+		rename: {
+			icons: {
+				files: [
+					{ 
+						src: [
+							'<%= config.src %>/styles/icons.less'
+						],
+						dest: [
+							'<%= config.src %>/styles/_icons.less'
+						]
+					},
+				]
+			}
+		},
 	});
+
+	grunt.registerTask( 'default', [
+
+		'clean:default',
+		'copy:default',
+		'jshint:default',
+		'concat:default',
+		'bower_concat:default',
+	]);
 
 	grunt.registerTask( 'prepare:development', [
 
-		'clean:development',
-		'copy:development',
+		'default',
 		'less:development',
-		'webfont:development',
-		'rename:development',
 		'autoprefixer:development',
-		'jshint:development',
-		'bower_concat:development',
-		'concat:development',
+		'uglify:development',
 	]);
 
 	grunt.registerTask( 'development', [
@@ -207,13 +236,25 @@ module.exports = function(grunt) {
 
 	grunt.registerTask( 'acceptance', [
 
-		'prepare:development',
+		'default',
+		'less:acceptance',
+		'autoprefixer:acceptance',
+		'uglify:acceptance',
 		// 'ftp-deploy:acceptance',
 	]);
 
 	grunt.registerTask( 'production', [
 
-		'prepare:development',
+		'default',
+		'less:acceptance',
+		'autoprefixer:acceptance',
+		'uglify:acceptance',
 		// 'ftp-deploy:production',
+	]);
+
+	grunt.registerTask( 'icons', [
+
+		'webfont:icons',
+		'rename:icons',
 	]);
 };

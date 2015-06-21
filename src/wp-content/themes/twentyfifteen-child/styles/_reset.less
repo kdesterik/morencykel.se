@@ -21,11 +21,17 @@ body {
 		padding: 0 0 0 0;
 		max-width: none;
 
-		.site-title {}
+		.site-header {
+
+			margin: 0 0 0 0;
+			padding: 0 0 0 0;
+
+			.site-title {}
+		}
 
 		.site-content {
 
-			margin: ( @line-height-computed * 4 ) 0 ( @line-height-computed * 6 );
+			margin: ( @line-height-computed * 5 ) 0;
 			display: block;
 			width: auto;
 			float: none;
@@ -47,15 +53,16 @@ body {
 
 						.entry-title {
 
-							margin-bottom: -1px;
-							padding-top: 1px;
+							margin-top: -3px;
+							margin-bottom: 0;
 							font-size: @font-size-h1;
-							line-height: @line-height-base;
+							line-height: @line-height-computed * 3;
 						}
 					}
 
 					.entry-content {
 
+						margin: 0 0 0 0;
 						padding: 0 0 0 0;
 					}
 
@@ -63,6 +70,13 @@ body {
 
 						padding: @line-height-computed;
 					}
+				}
+
+				&.t15wc {
+
+					margin: 0 0 0 0;
+					background-color: transparent;
+					box-shadow: none;
 				}
 			}
 		}

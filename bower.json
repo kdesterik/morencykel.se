@@ -9,6 +9,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "bootstrap": "~3.3.4"
+    "bootstrap": "~3.3.4",
+    "masonry": "~3.3.0"
   }
 }
