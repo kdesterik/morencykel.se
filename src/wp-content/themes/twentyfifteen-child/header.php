@@ -28,46 +28,43 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<?php echo get_network_sites_dropdown(); ?>
+					<?php render_network_sites_dropdown(); ?>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="row">
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
-							<?php if ( has_nav_menu( 'primary' ) ) : ?>
-							<nav class="navigation" role="navigation">
+						<nav class="navigation" role="navigation">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<?php if ( has_nav_menu( 'primary' ) ) : ?>
 								<?php
 									wp_nav_menu( array(
 										'theme_location' => 'primary',
 									) );
 								?>
-							</nav>
-							<?php endif; ?>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<?php if ( has_nav_menu( 'secondary' ) ) : ?>
-							<nav class="navigation" role="navigation">
+								<?php endif; ?>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<?php if ( has_nav_menu( 'secondary' ) ) : ?>
 								<?php
 									wp_nav_menu( array(
 										'theme_location' => 'secondary',
 									) );
 								?>
-							</nav>
-							<?php endif; ?>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<?php if ( has_nav_menu( 'social' ) ) : ?>
-							<nav class="navigation" role="navigation">
+								<?php endif; ?>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<?php if ( has_nav_menu( 'social' ) ) : ?>
 								<?php
 									wp_nav_menu( array(
 										'theme_location' => 'social',
 									) );
 								?>
-							</nav>
-							<?php endif; ?>
-						</div>
+								<?php endif; ?>
+							</div>
+						</nav>
 					</div>
 				</div>
 			</div>
 		</div>
-	</header>
+	</header><!-- .site-header -->
 	<div id="content" class="site-content">

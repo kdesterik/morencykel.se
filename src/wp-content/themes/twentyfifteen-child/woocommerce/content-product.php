@@ -26,7 +26,8 @@ if ( ! $product || ! $product->is_visible() )
 // Increase loop count
 $woocommerce_loop['loop']++;
 
-$featured = get_post_meta( get_the_id(), 'featured', true );
+// Retrieve product_settings from simple_fields plugin
+$product_settings = simple_fields_fieldgroup( 'product_settings' );
 
 // Extra post classes
 $classes = array( 
@@ -36,15 +37,28 @@ $classes = array(
 	'col-xs-12'
 );
 
-if( isset( $featured ) && $featured == 'true' ){
+if( isset( $product_settings ) && isset( $product_settings[ 'display_size' ])){
 
-	$classes[] = 'col-lg-6';
-	$classes[] = 'featured';
+	if( $product_settings[ 'display_size' ][ 'selected_value' ] == 'large' ){
+
+		$classes[] = 'col-lg-9';
+		$classes[] = 'large';
+
+	} elseif( $product_settings[ 'display_size' ][ 'selected_value' ] == 'medium' ){
+
+		$classes[] = 'col-lg-6';
+		$classes[] = 'medium';
+
+	} elseif( $product_settings[ 'display_size' ][ 'selected_value' ] == 'small' ){
+
+		$classes[] = 'col-lg-3';
+		$classes[] = 'small';
+	}
 
 } else {
 
 	$classes[] = 'col-lg-3';
-	$classes[] = 'default';
+	$classes[] = 'small';
 }
 
 

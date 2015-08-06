@@ -7,23 +7,39 @@ function get_child_template_directory_uri() {
 	return get_stylesheet_directory_uri();
 }
 
+function twentyfifteen_child_setup() {
+
+	/**
+	 * Adjust post_thumbnail size
+	 */
+	set_post_thumbnail_size( 849, 480, array( 'center', 'center' ));
+
+	/**
+	 * Add additional menus
+	 */
+	register_nav_menu( 'secondary', __( 'Secondary Menu' ));
+}
+add_action( 'init', 'twentyfifteen_child_setup' );
+
 
 /**
  * Remove initial parent theme load scripts function
  */
 function remove_twentyfifteen_scripts() {
-	remove_action('wp_enqueue_scripts', 'twentyfifteen_scripts');
+
+	remove_action( 'wp_enqueue_scripts', 'twentyfifteen_scripts' );
 }
 add_action( 'init', 'remove_twentyfifteen_scripts' );
 
 
 /**
- * Add additional menus
+ * Remove initial parent twenty_post_nav_background script
  */
-function register_secondary_menu() {
-  register_nav_menu( 'secondary', __( 'Secondary Menu' ));
+function remove_twentyfifteen_post_nav_background() {
+
+	remove_action( 'wp_enqueue_scripts', 'twentyfifteen_post_nav_background' );
 }
-add_action( 'init', 'register_secondary_menu' );
+add_action( 'init', 'remove_twentyfifteen_post_nav_background' );
 
 
 /**
@@ -100,7 +116,7 @@ add_action( 'wp_enqueue_scripts', 'livereload' );
 /**
  * Get network sites in dropdown
  */
-function get_network_sites_dropdown(){
+function render_network_sites_dropdown(){
 
 	$sites 	= wp_get_sites();
 	$html 	= '';
@@ -133,116 +149,8 @@ function get_network_sites_dropdown(){
 	$html .= '</ul>';
 	$html .= '</div>';
 
-	return $html;
+	echo $html;
 }
-
-
-/**
- * Render menu - to be used on Menu Modal
- */
-function render_menu() {
-	$arguments = array(
-		'theme_location' => 'primary',
-		'items_wrap'     => '<div class="container">%3$s</div>',
-		'walker'		 => new Menu_Walker()
-	);
-	return wp_nav_menu( $arguments );
-}
-
-
-/**
- * Custom Walker_Nav_Menu to walk through Menu navigation
- */
-class Menu_Walker extends Walker_Nav_Menu {
-
-	public function start_lvl( &$output, $depth = 0, $args = array() ){
-
-		$output .= '';
-	}
-
-	public function end_lvl( &$output, $depth = 0, $args = array() ){
-
-		$output .= '';
-	}
-
-	public function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ){
-
-		if( $depth == 0 ){
-
-			$output .= '<div class="row">';
-			$output .= '<div class="col-lg-12"><hr/></div>';
-			$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
-		}
-
-		if( $depth == 1 ){
-
-			if( $this->get_previous_depth() == 3 ){
-
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
-
-			} else if( $this->get_previous_depth() == 1 ){
-
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
-
-			} else {
-
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
-			}
-		}
-
-		if( $depth == 2 ){
-
-			if( $this->get_previous_depth() == 3 ){
-
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
-
-			} else {
-
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
-			}
-		}
-
-		if( $depth == 3 ){
-
-			if( $this->get_previous_depth() == 3 ){
-
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><br/></div>';
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
-
-			} else {
-
-				$output .= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">';
-			}
-		}
-
-		$output .= sprintf( '<a href="%s" class="%s">%s</a>', esc_attr( $object->url ), implode( ' ', $object->classes ), esc_attr( $object->title ));
-		$output .= '</div>';
-
-		$this->set_previous_depth( $depth );
-	}
-
-	public function end_el( &$output, $object, $depth = 0, $args = array() ){
-
-		if( $depth == 0 ){
-
-			$output .= '</div>';
-		}
-	}
-
-
-	private $previous = 0;
-	public function get_previous_depth(){ return $this->previous; }
-	public function set_previous_depth( $value ){ $this->previous = $value; }
-}
-
 
 
 /**
@@ -250,10 +158,10 @@ class Menu_Walker extends Walker_Nav_Menu {
  */
 function render_carousel(){
 
-	$slides		 = simple_fields_fieldgroup( 'home_page_cover' );
-	$count		 = 0;
-	$html 	 	 = '<div class="carousel" data-ride="carousel" data-pause="hover">';
-	$html 		.= '<div class="carousel-inner" role="listbox">';
+	$slides = simple_fields_fieldgroup( 'home_page_cover' );
+	$count  = 0;
+	$html   = '<div class="carousel" data-ride="carousel" data-pause="hover">';
+	$html  .= '<div class="carousel-inner" role="listbox">';
 
 	foreach( $slides as $slide ){
 
@@ -261,15 +169,20 @@ function render_carousel(){
 
 		$html 	.= sprintf( '<div class="cover" style="background-image: url( %s );"></div>', $slide[ 'cover_image' ][ 'url' ] );
 
-		$html 	.= '<div class="caption">';
+		$html 	.= '<div class="hentry">';
 		$html 	.= '<div class="container">';
 
 		$html 	.= '<div class="row">';
 		$html 	.= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">';
 
+		$html 	.= '<header class="entry-header">';
 		$html 	.= sprintf( '<h1>%s</h1>', $slide[ 'cover_title' ]);
+		$html 	.= '</header>';
+
+		$html 	.= '<div class="entry-content">';
 		$html 	.= sprintf( '<p>%s</p>', $slide[ 'cover_description' ]);
-		$html 	.= sprintf( '<p><a href="%s">Read more</a></p>', $slide[ 'cover_link' ][ 'permalink' ]);
+		$html 	.= sprintf( '<a href="%s" class="more-link">%s</a>', $slide[ 'cover_link' ][ 'permalink' ], __( 'Continue reading ', 'twentyfifteen' ));
+		$html 	.= '</div>';
 
 		$html 	.= '</div>';
 		$html 	.= '</div>';
@@ -282,10 +195,34 @@ function render_carousel(){
 		$count 	+= 1;
 	}
 	
-	$html 	.= '</div>';
-	$html 	.= '</div>';
+	$html .= '</div>';
+	$html .= '</div>';
 
-	return $html;
+	echo $html;
+}
+
+
+/**
+ * Render post_navigation - to be used on Content Pafe
+ */
+function render_post_navigation( $args = array() ){
+
+	$args = wp_parse_args( $args, array(
+        'prev_text'          => '%title',
+        'next_text'          => '%title',
+        'screen_reader_text' => __( 'Post navigation' ),
+    ) );
+ 
+    $navigation = '';
+    $previous   = get_previous_post_link( '<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><div class="nav-previous">%link</div></div>', $args['prev_text'] );
+    $next       = get_next_post_link( '<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right"><div class="nav-next">%link</div></div>', $args['next_text'] );
+ 
+    // Only add markup if there's somewhere to navigate to.
+    // if ( $previous || $next ) {
+        $navigation = _navigation_markup( $previous . $next, 'post-navigation', $args['screen_reader_text'] );
+    // }
+ 
+    echo $navigation;
 }
 
 

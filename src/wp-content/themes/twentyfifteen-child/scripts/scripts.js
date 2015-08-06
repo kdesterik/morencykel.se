@@ -10,7 +10,7 @@
 		$( '.container', archive_product ).masonry({
 
 			percentPosition: true,
-  			columnWidth: '.shop-item',
+  			columnWidth: '.small',
   			itemSelector: '.shop-item',
   			transitionDuration: 0,
 		});

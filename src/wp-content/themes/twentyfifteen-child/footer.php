@@ -16,9 +16,12 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="site-info">
-						<?php if( is_active_sidebar( 'sidebar-1' )): ?>
-							<?php dynamic_sidebar( 'sidebar-1' ); ?>
-						<?php endif; ?>
+						<?php
+							$description = get_bloginfo( 'description', 'display' );
+							if ( $description || is_customize_preview() ) : ?>
+								<p class="site-description">&copy; <?php echo date( "Y" ); ?> <?php echo $description; ?>. All rights reserved.</p>
+							<?php endif;
+						?>
 					</div><!-- .site-info -->
 				</div>
 			</div>

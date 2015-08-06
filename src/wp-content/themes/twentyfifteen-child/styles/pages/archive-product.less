@@ -1,5 +1,7 @@
 .archive-product {
 
+	margin: 0 0 ( @line-height-computed * 3 );
+
 	.container {
 
 		padding: 0 0 0 0;
@@ -12,12 +14,17 @@
 
 				margin-bottom: @line-height-computed;
 
-				&.featured {
+				&.large {
+
+					height: ( @line-height-computed * 29 );
+				}
+
+				&.medium {
 
 					height: ( @line-height-computed * 19 );
 				}
 
-				&.default {
+				&.small {
 
 					height: ( @line-height-computed * 9 );	
 				}

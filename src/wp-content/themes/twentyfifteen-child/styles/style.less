@@ -15,14 +15,14 @@
 @import './bower_components/bootstrap/less/mixins.less';
 
 // Reset and dependencies
-@import '_reset.less';
+@import './core/reset.less';
 
 // Dependencies
-@import '_fonts.less';
+@import './core/fonts.less';
 // @import '_icons.less';
 
 // Overwrite and extend variables
-@import '_variables.less';
+@import './core/variables.less';
 
 // Core CSS
 @import './bower_components/bootstrap/less/scaffolding.less';
@@ -31,9 +31,9 @@
 @import './bower_components/bootstrap/less/buttons.less';
 
 // Overwrite core CSS
-@import '_scaffolding.less';
-@import '_type.less';
-@import '_grid.less';
+@import './core/scaffolding.less';
+@import './core/type.less';
+@import './core/grid.less';
 
 // Components
 @import './bower_components/bootstrap/less/component-animations.less';
@@ -46,17 +46,21 @@
 @import './bower_components/bootstrap/less/carousel.less';
 
 // Overwrite components w/ JavaScript
-@import '_modals.less';
+@import './components/modals.less';
+@import './components/dropdowns.less';
 
 // Utility classes
 @import './bower_components/bootstrap/less/utilities.less';
 @import './bower_components/bootstrap/less/responsive-utilities.less';
 
 // Custom components
-@import '_header.less';
-@import '_footer.less';
-@import '_menu.less';
-@import '_page-home.less';
-@import '_archive-product.less';
+@import './components/header.less';
+@import './components/footer.less';
+@import './components/navigation.less';
+
+// Pages
+@import './pages/page.less';
+@import './pages/page-home.less';
+@import './pages/archive-product.less';
 
 // Plugins
