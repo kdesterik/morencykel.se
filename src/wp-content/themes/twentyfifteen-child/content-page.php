@@ -1,17 +1,7 @@
-<?php
-/**
- * The template used for displaying page content
- *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
- */
-?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<header class="entry-header">
 					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 				</header><!-- .entry-header -->

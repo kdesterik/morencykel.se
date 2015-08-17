@@ -1,5 +1,6 @@
-.ftppass
-dist/
-bower_components/
-node_modules/
 .DS_Store
+.ftppass
+/dist/
+/bower_components/
+/node_modules/
+/vendor/

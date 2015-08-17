@@ -7,13 +7,13 @@
 //
 //## Gray and brand colors for use across Bootstrap.
 
-@white:					#FFF;
+@white:					#FFFFFF;
 @gray-base:             #000;
-@gray-darker:           lighten(@gray-base, 5%);    // #121212
-@gray-dark:             lighten(@gray-base, 25%);   // #333
-@gray:                  lighten(@gray-base, 50%);   // #a1a1a1
-@gray-light:            lighten(@gray-base, 75%);   // #c3c3c3
-@gray-lighter:          lighten(@gray-base, 95%);   // #eee
+@gray-darker:           lighten(@gray-base, 5%);
+@gray-dark:             lighten(@gray-base, 25%);
+@gray:                  lighten(@gray-base, 50%);
+@gray-light:            lighten(@gray-base, 75%);
+@gray-lighter:          #F0F0F0;
 
 @brand-primary:         #86e706;
 @brand-success:         #5cb85c;
@@ -27,7 +27,7 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               @white;
+@body-bg:               @gray-lighter;
 //** Global text color on `<body>`.
 @text-color:            @gray-darker;
 
@@ -44,7 +44,7 @@
 //## Font, line-height, and color for body text, headings, and more.
 
 // @font-family-sans-serif:  "Vitesse Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-monospace:   "Simplon Mono Regular", Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-monospace:   "Simplon Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-monospace;
 
 @font-size-base:          16px;
@@ -57,6 +57,9 @@
 @font-size-h5:            21px;
 @font-size-h6:            18px;
 @line-height-base:        1.5; // 24/16
+
+//** By default, this inherits from the `<body>`.
+@headings-font-weight:    bold;
 
 
 //== Components
@@ -92,7 +95,7 @@
 //##
 
 //** Modal backdrop background color
-@modal-backdrop-bg:           @gray-lighter;
+@modal-backdrop-bg:           @gray-darker;
 //** Modal backdrop opacity
 @modal-backdrop-opacity:      1;
 
@@ -109,4 +112,4 @@
 //##
 
 //** Horizontal line color.
-@hr-border:                   @gray-dark;
+@hr-border:                   @gray-darker;

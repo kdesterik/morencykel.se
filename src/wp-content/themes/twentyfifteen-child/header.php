@@ -23,17 +23,28 @@
 
 <body <?php body_class(); ?>>
 
+<div class="modal fade" id="search" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<?php get_search_form(); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div id="page" class="hfeed site">
 	<header id="header" class="site-header">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<?php render_network_sites_dropdown(); ?>
+					<?php render_network_sites_dropdown( get_header_image() ); ?>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="row">
 						<nav class="navigation" role="navigation">
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 								<?php if ( has_nav_menu( 'primary' ) ) : ?>
 								<?php

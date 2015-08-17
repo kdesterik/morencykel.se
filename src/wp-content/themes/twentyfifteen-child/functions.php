@@ -15,11 +15,61 @@ function twentyfifteen_child_setup() {
 	set_post_thumbnail_size( 849, 480, array( 'center', 'center' ));
 
 	/**
-	 * Add additional menus
+	 * Remove and add additional menus
 	 */
+	unregister_nav_menu( 'social' );
 	register_nav_menu( 'secondary', __( 'Secondary Menu' ));
+	register_nav_menu( 'social', __( 'Social Links Menu', 'twentyfifteen' ));
+
+	/**
+	 * Remove custom header feature
+	 */
+	remove_theme_support( 'custom-header' );
+
+	/**
+	 * Add adjusted custom header feature
+	 */
+	add_theme_support( 'custom-header', apply_filters( 'twentyfifteen_custom_header_args', array(
+		'default-text-color'     => '#0D0D0D',
+		'width'                  => 256,
+		'height'                 => 88,
+	)));
+	
+	/**
+	 * Remove custom background feature
+	 */
+	remove_theme_support( 'custom-background' );
+
+	/**
+	 * Remove twentyfifteen sidebar text color css
+	 */
+	remove_action( 'wp_enqueue_scripts', 'twentyfifteen_sidebar_text_color_css', 11 );
+
 }
 add_action( 'init', 'twentyfifteen_child_setup' );
+
+
+/**
+ * Remove colors section
+ */
+
+function remove_colors_sections(){
+
+    global $wp_customize;
+
+    $wp_customize->remove_section( 'colors' );
+}
+add_action( 'customize_register', 'remove_colors_sections', 20 );
+
+
+/**
+ * Remove widget area.
+ */
+function remove_twentyfifteen_widgets(){
+
+	unregister_sidebar( 'sidebar-1' );
+}
+add_action( 'widgets_init', 'remove_twentyfifteen_widgets', 11 );
 
 
 /**
@@ -116,12 +166,12 @@ add_action( 'wp_enqueue_scripts', 'livereload' );
 /**
  * Get network sites in dropdown
  */
-function render_network_sites_dropdown(){
+function render_network_sites_dropdown( $logo ){
 
 	$sites 	= wp_get_sites();
 	$html 	= '';
 	$html  .= '<div class="dropdown">';
-	$html  .= '<a href="#" data-toggle="dropdown" aria-expanded="true"><h1 class="site-title">MorenCykel</h1></a>';
+	$html  .= sprintf( '<a href="#" data-toggle="dropdown" aria-expanded="true"><img src="%s" class="site-title"/></a>', $logo );
 	$html  .= '<ul class="dropdown-menu" role="menu">';
 
 	foreach( $sites as $site ){
@@ -153,53 +203,66 @@ function render_network_sites_dropdown(){
 }
 
 
+function add_search_menu_attributes( $atts, $item, $args ){
+
+	$menu_target = 177;
+
+	if( $item->ID == 177 ) {
+
+		$atts[ 'data-toggle' ] = 'modal';
+		$atts[ 'data-target' ] = '#search';
+	}
+	return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'add_search_menu_attributes', 10, 3 );
+
 /**
  * Render carousel - to be used on Home Page
  */
-function render_carousel(){
+// function render_carousel(){
 
-	$slides = simple_fields_fieldgroup( 'home_page_cover' );
-	$count  = 0;
-	$html   = '<div class="carousel" data-ride="carousel" data-pause="hover">';
-	$html  .= '<div class="carousel-inner" role="listbox">';
+// 	$slides = simple_fields_fieldgroup( 'home_page_cover' );
+// 	$count  = 0;
+// 	$html   = '<div class="carousel" data-ride="carousel" data-pause="hover">';
+// 	$html  .= '<div class="carousel-inner" role="listbox">';
 
-	foreach( $slides as $slide ){
+// 	foreach( $slides as $slide ){
 
-		$html 	.= ( $count == 0 ) ? '<div class="item active">' : '<div class="item">';
+// 		$html 	.= ( $count == 0 ) ? '<div class="item active">' : '<div class="item">';
 
-		$html 	.= sprintf( '<div class="cover" style="background-image: url( %s );"></div>', $slide[ 'cover_image' ][ 'url' ] );
+// 		$html 	.= sprintf( '<div class="cover" style="background-image: url( %s );"></div>', $slide[ 'cover_image' ][ 'url' ] );
 
-		$html 	.= '<div class="hentry">';
-		$html 	.= '<div class="container">';
+// 		$html 	.= '<div class="hentry">';
+// 		$html 	.= '<div class="container">';
 
-		$html 	.= '<div class="row">';
-		$html 	.= '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">';
+// 		$html 	.= '<div class="row">';
+// 		$html 	.= '<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 
-		$html 	.= '<header class="entry-header">';
-		$html 	.= sprintf( '<h1>%s</h1>', $slide[ 'cover_title' ]);
-		$html 	.= '</header>';
+// 		$html 	.= '<header class="entry-header">';
+// 		$html 	.= sprintf( '<h1 class="entry-title">%s</h1>', $slide[ 'cover_title' ]);
+// 		$html 	.= '</header>';
 
-		$html 	.= '<div class="entry-content">';
-		$html 	.= sprintf( '<p>%s</p>', $slide[ 'cover_description' ]);
-		$html 	.= sprintf( '<a href="%s" class="more-link">%s</a>', $slide[ 'cover_link' ][ 'permalink' ], __( 'Continue reading ', 'twentyfifteen' ));
-		$html 	.= '</div>';
+// 		$html 	.= '<div class="entry-content">';
+// 		$html 	.= sprintf( '<p>%s</p>', nl2br( $slide[ 'cover_description' ]));
+// 		$html 	.= sprintf( '<a href="%s" class="more-link">%s</a>', $slide[ 'cover_link' ][ 'permalink' ], __( 'Continue reading ', 'twentyfifteen' ));
+// 		$html 	.= '</div>';
 
-		$html 	.= '</div>';
-		$html 	.= '</div>';
+// 		$html 	.= '</div>';
+// 		$html 	.= '</div>';
 
-		$html 	.= '</div>';
-		$html 	.= '</div>';
+// 		$html 	.= '</div>';
+// 		$html 	.= '</div>';
 
-		$html 	.= '</div>';
+// 		$html 	.= '</div>';
 
-		$count 	+= 1;
-	}
+// 		$count 	+= 1;
+// 	}
 	
-	$html .= '</div>';
-	$html .= '</div>';
+// 	$html .= '</div>';
+// 	$html .= '</div>';
 
-	echo $html;
-}
+// 	echo $html;
+// }
 
 
 /**

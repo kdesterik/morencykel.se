@@ -4,6 +4,14 @@
  */
 ( function( $, window, document, undefined ){
 
+	// Autofocus on Search inputfield
+	$( '#search' ).on( 'shown.bs.modal', function(){
+		
+		$( '#search .search-form .search-field' ).val( '' );
+		$( '#search .search-form .search-field' ).focus();
+	});
+
+	// Enable Masonry on Shop page
 	var archive_product = $( '.archive-product' ).get( 0 );
 	if( archive_product ){
 
@@ -16,6 +24,7 @@
 		});
 	}
 
+	// Display baseline grid on 'G' keypress
 	$( document ).keypress( function( event ){
 
 		var code = event.keyCode || event.which;
