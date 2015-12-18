@@ -1,0 +1,56 @@
+/*
+Theme Name: MorenCykel
+Theme URI: http://underscores.me/
+Author: Koen Dirk van Esterik
+Author URI: http://www.flipflopinteractive.com
+Description: MorenCykel.se - E-commerce platform
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: morencykel
+Tags:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+MorenCykel is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+*/
+
+// Core variables and mixins
+@import './bower_components/bootstrap/less/variables.less';
+@import './bower_components/bootstrap/less/mixins.less';
+
+// Dependencies
+@import './core/fonts.less';
+// @import '_icons.less';
+
+// Overwrite and extend variables
+@import './core/variables.less';
+
+// Core CSS
+@import './bower_components/bootstrap/less/scaffolding.less';
+@import './bower_components/bootstrap/less/type.less';
+@import './bower_components/bootstrap/less/grid.less';
+@import './bower_components/bootstrap/less/buttons.less';
+
+// Overwrite core CSS
+@import './core/scaffolding.less';
+@import './core/type.less';
+@import './core/grid.less';
+
+// Components
+@import './bower_components/bootstrap/less/component-animations.less';
+@import './bower_components/bootstrap/less/dropdowns.less';
+
+// Utility classes
+@import './bower_components/bootstrap/less/utilities.less';
+@import './bower_components/bootstrap/less/responsive-utilities.less';
+
+// Custom components
+@import './assets/header.less';
+@import './assets/footer.less';
+@import './assets/search.less';

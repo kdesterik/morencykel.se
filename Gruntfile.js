@@ -8,18 +8,12 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 
 		config: grunt.file.readJSON( 'config.json' ),
+		credentials: grunt.file.readJSON( 'credentials.json' ),
 
 		clean: {
 			default: {
 				src: [ 
-					'<%= config.dist %>/*.php',
-					'<%= config.dist %>/page-templates/*.php',
-					'<%= config.dist %>/woocommerce/**/*.php',
-					'<%= config.dist %>/*.png',
-					'<%= config.dist %>/fonts/*.*',
-					'<%= config.dist %>/js/scripts.js',
-					'<%= config.dist %>/images/*.*',
-					'<%= config.dist %>/videos/*.*',
+					'<%= config.dist %>'
 				]
 			},
 		},
@@ -30,14 +24,9 @@ module.exports = function(grunt) {
 				dest: '<%= config.dist %>/',
 				cwd: '<%= config.src %>/',
 				src: [ 
-					'*.php',
-					'page-templates/*.php',
-					'woocommerce/**/*.php',
-					'*.png', 
-					'fonts/*.*', 
-					'js/*.*', 
-					'images/*.*', 
-					'videos/*.*' ]
+					'**',
+					'!styles/**'
+				]
 			},
 		},
 
@@ -55,7 +44,7 @@ module.exports = function(grunt) {
 		concat: {
 			default: {
 				src: [
-					'<%= config.src %>/scripts/scripts.js',
+					'<%= config.src %>/scripts/**/*.js',
 				],
 				dest: '<%= config.dist %>/js/scripts.js'
 			}
@@ -65,21 +54,8 @@ module.exports = function(grunt) {
 			default: {
 				dest: '<%= config.dist %>/js/libs.js',
 				dependencies: {},
-				exclude: [
-			        'jquery',
-			        'doc-ready',
-			        'eventEmitter',
-			        'eventie',
-			        'fizzy-ui-utils',
-			        'get-size',
-			        'get-style-property',
-			        'matches-selector',
-			        'outlayer'
-			    ],
-			    mainFiles: {
-					'bootstrap': 'dist/js/bootstrap.min.js',
-					'masonry': 'dist/masonry.pkgd.min.js',
-				}
+				exclude: [],
+			    mainFiles: {}
 			}
 		},
 
@@ -134,12 +110,26 @@ module.exports = function(grunt) {
 			},
 		},
 
+		webfont: {
+			icons: {
+				src: '<%= config.src %>/icons/*.svg',
+				dest: '<%= config.dist %>/fonts/',
+				destCss: '<%= config.src %>/styles/core/',
+				options: {
+					engine: 'node',
+					font: 'icons',
+					stylesheet: 'less',
+					relativeFontPath: './fonts/',
+					destHtml: '<%= config.src %>/icons/'
+				}
+			}
+		},
+
 		watch: {
 			development: {
 				files: [
 					'Gruntfile.js',
 					'<%= config.src %>/**/*.*',
-					'!<%= config.src %>/styles/_icons.less',
 				],
 				tasks: [ 
 					'prepare:development'
@@ -156,56 +146,23 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// 'ftp-deploy': {
-		// 	acceptance: {
-		// 		auth: {
-		// 			host: 'theidentitymanual.com',
-		// 			port: 21,
-		// 			authKey: 'acceptance',
-		// 		},
-		// 		src: '<%= config.dist %>',
-		// 		dest: '<%= config.ftp_dist %>',
-		// 		exclusions: [ '<%= config.dist %>/**/.DS_Store' ]
-		// 	},
-		// 	production: {
-		// 		auth: {
-		// 			host: 'theidentitymanual.com',
-		// 			port: 21,
-		// 			authKey: 'production',
-		// 		},
-		// 		src: '<%= config.dist %>',
-		// 		dest: '<%= config.ftp_dist %>',
-		// 		exclusions: [ '<%= config.dist %>/**/.DS_Store' ]
-		// 	},
-		// }
-
-		webfont: {
-			icons: {
-				src: '<%= config.src %>/icons/*.svg',
-				dest: '<%= config.dist %>/fonts/',
-				destCss: '<%= config.src %>/styles/',
+		sftp: {
+			test: {
+				files: {
+					"./": [ 
+						"./dist/wp-content/themes/twentyfifteen-child/**",
+						"./dist/wp-content/plugins/**"
+					]
+				},
 				options: {
-					engine: 'node',
-					font: 'icons',
-					stylesheet: 'less',
-					relativeFontPath: './fonts/',
-					destHtml: '<%= config.src %>/icons/'
+					path: '/var/www/html/112_0003/wp-content/',
+					srcBasePath: './dist/wp-content/',
+					host: '<%= credentials.host %>',
+					username: '<%= credentials.username %>',
+					password: '<%= credentials.password %>',
+					createDirectories: true,
+					showProgress: true
 				}
-			}
-		},
-
-		rename: {
-			icons: {
-				files: [
-					{ 
-						src: [
-							'<%= config.src %>/styles/icons.less'
-						],
-						dest: [
-							'<%= config.src %>/styles/_icons.less'
-						]
-					},
-				]
 			}
 		},
 	});
@@ -234,27 +191,30 @@ module.exports = function(grunt) {
 		'watch:development'
 	]);
 
+	grunt.registerTask( 'test', [
+
+		'default',
+		'less:development',
+		'autoprefixer:development',
+		'uglify:development',
+		'sftp:test',
+	]);
+
 	grunt.registerTask( 'acceptance', [
 
 		'default',
 		'less:acceptance',
 		'autoprefixer:acceptance',
 		'uglify:acceptance',
-		// 'ftp-deploy:acceptance',
+		'sftp:acceptance',
 	]);
 
-	grunt.registerTask( 'production', [
+	// grunt.registerTask( 'production', [
 
-		'default',
-		'less:acceptance',
-		'autoprefixer:acceptance',
-		'uglify:acceptance',
-		// 'ftp-deploy:production',
-	]);
-
-	grunt.registerTask( 'icons', [
-
-		'webfont:icons',
-		'rename:icons',
-	]);
+	// 	'default',
+	// 	'less:acceptance',
+	// 	'autoprefixer:acceptance',
+	// 	'uglify:acceptance',
+	//  'sftp:production',
+	// ]);
 };

@@ -1,15 +1,14 @@
 {
-  "name": "MorenCykel.se",
-  "version": "1.0.0",
-  "homepage": "https://github.com/kdesterik/morencykel.se",
-  "description": "Nerom AB: eCommerce platform",
-  "main": "Gruntfile.js",
+  "name": "morencykel_se",
+  "description": "MorenCykel.se - E-commerce platform",
+  "main": "gruntfile.js",
   "authors": [
     "Koen Dirk van Esterik"
   ],
   "license": "MIT",
+  "moduleType": [],
+  "homepage": "https://github.com/kdesterik/morencykel.se",
   "devDependencies": {
-    "bootstrap": "~3.3.4",
-    "masonry": "~3.3.0"
+    "bootstrap": "~3.3.6"
   }
 }

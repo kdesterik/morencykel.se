@@ -1,52 +1,34 @@
 {
-    "name": "kdesterik/morencykel",
-    "description": "MorenCykel: E-commerce platform",
-    "license": "MIT",
-    "authors": [{
-        "name": "Koen Dirk van Esterik",
-        "email": "kdesterik@gmail.com"
-    }],
-
     "repositories": [
         {
-            "type": "package",
-            "package": {
-                "name": "elliotcondon/acf",
-                "version": "4.4.2",
-                "type": "wordpress-plugin",
-                "source": {
-                    "url": "https://github.com/elliotcondon/acf.git",
-                    "type": "git",
-                    "reference": "4.4.2"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "woothemes/woocommerce",
-                "version": "2.4.4",
-                "type": "wordpress-plugin",
-                "source": {
-                    "url": "https://github.com/woothemes/woocommerce.git",
-                    "type": "git",
-                    "reference": "2.4.4"
-                }
-            }
+            "type":"composer",
+            "url":"http://wpackagist.org"
         }
     ],
 
     "require": {
-        "composer/installers": "~1.0.0",
-        "elliotcondon/acf": "4.4.2",
-        "woothemes/woocommerce": "2.4.4"
+        "php": ">=5.4",
+        "composer/installers": "~1.0",
+        "johnpbloch/wordpress": "4.4",
+        "wpackagist-plugin/wp-mmenu-lite": "1.0.0",
+        "wpackagist-plugin/woocommerce": "2.4.12",
+        "wp-sync-db/wp-sync-db": "dev-master"
+    },
+
+    "config": {
+        "vendor-dir": "./dist/wp-content/vendors/"
     },
 
     "extra": {
+        "wordpress-install-dir": "./dist/wp/",
         "installer-paths": {
-            "./dist/wp-content/plugins/{$name}": [ 
-                "elliotcondon/acf",
-                "woothemes/woocommerce"
+
+            "./dist/wp-content/themes/{$name}": [],
+
+            "./dist/wp-content/plugins/{$name}": [
+                "wpackagist-plugin/wp-mmenu-lite",
+                "wpackagist-plugin/woocommerce",
+                "wp-sync-db/wp-sync-db"
             ]
         }
     }
