@@ -1,0 +1,17 @@
+.site {
+
+	height: 100%;
+
+	.site-content {
+
+		min-height: 100%;
+		margin-bottom: -( @line-height-computed * 3 );
+
+		&:after {
+
+			content: "";
+			display: block;
+			height: ( @line-height-computed * 5 );
+		}
+	}
+}

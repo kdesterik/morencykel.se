@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "hash": "31db11bf86c6aadf7f44c3f82f6a8335",
+    "content-hash": "28d2b8e4bb80a3088167929e657a6385",
     "packages": [
         {
             "name": "composer/installers",
@@ -222,86 +223,6 @@
             "time": "2015-05-02 21:48:19"
         },
         {
-            "name": "wpackagist-plugin/bootstrap-3-shortcodes",
-            "version": "3.3.6",
-            "source": {
-                "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/bootstrap-3-shortcodes/",
-                "reference": "tags/3.3.6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/bootstrap-3-shortcodes.3.3.6.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/bootstrap-3-shortcodes/"
-        },
-        {
-            "name": "wpackagist-plugin/jetpack",
-            "version": "3.8.1",
-            "source": {
-                "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/jetpack/",
-                "reference": "tags/3.8.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/jetpack.3.8.1.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/jetpack/"
-        },
-        {
-            "name": "wpackagist-plugin/regenerate-thumbnails",
-            "version": "2.2.5",
-            "source": {
-                "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/regenerate-thumbnails/",
-                "reference": "tags/2.2.5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/regenerate-thumbnails.2.2.5.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/regenerate-thumbnails/"
-        },
-        {
-            "name": "wpackagist-plugin/simple-css-for-widgets",
-            "version": "1.0",
-            "source": {
-                "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/simple-css-for-widgets/",
-                "reference": "trunk"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/simple-css-for-widgets.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/simple-css-for-widgets/"
-        },
-        {
             "name": "wpackagist-plugin/woocommerce",
             "version": "2.4.12",
             "source": {
@@ -340,36 +261,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-mmenu-lite/"
-        },
-        {
-            "name": "wpackagist-theme/flat-bootstrap",
-            "version": "1.6",
-            "source": {
-                "type": "svn",
-                "url": "http://themes.svn.wordpress.org/flat-bootstrap/",
-                "reference": "1.6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/theme/flat-bootstrap.1.6.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-theme",
-            "homepage": "https://wordpress.org/themes/flat-bootstrap/"
-        },
-        {
-            "name": "xtremelysocial/flat-bootstrap-dev",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/xtremelysocial/flat-bootstrap-dev.git",
-                "reference": "master"
-            },
-            "type": "wordpress-theme"
         }
     ],
     "packages-dev": [],

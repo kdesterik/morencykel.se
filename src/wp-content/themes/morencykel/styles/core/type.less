@@ -1,5 +1,55 @@
+// Headings
+// -------------------------
+
+// Headings
+// -------------------------
+
+h1, h2, h3, h4 {
+
+	margin: 0 0 @line-height-computed;
+
+	&:before {
+		content: '';
+		display: inline-block;
+		vertical-align: baseline;
+		height: ( @line-height-computed * 2 );
+	}
+
+	&:after {
+		content: '';
+		display: inline-block;
+		vertical-align: -@line-height-computed;
+		height: ( @line-height-computed * 2 );
+	}
+}
+
+// Body text
+// -------------------------
+
+p {
+	margin: 0 0 0 0;
+
+	&:before {
+		content: '';
+		display: inline-block;
+		vertical-align: baseline;
+		height: @line-height-computed;
+	}
+
+	&:after {
+		content: '';
+		display: inline-block;
+		vertical-align: -@line-height-computed;
+		height: @line-height-computed;
+	}
+}
+
+// Screen reader
+// -------------------------
+
 .screen-reader-text {
-    clip: rect(1px, 1px, 1px, 1px);
+
+    clip: rect( 1px, 1px, 1px, 1px );
     position: absolute !important;
     height: 1px;
     width: 1px;

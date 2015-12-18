@@ -14,10 +14,14 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'morencykel' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'morencykel' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'morencykel' ), 'morencykel', '<a href="http://www.flipflopinteractive.com" rel="designer">Koen Dirk van Esterik</a>' ); ?>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="site-info">
+						<?php printf( __( '<p class="site-description">&copy; %1$s %2$s</p>', 'morencykel' ), date( 'Y' ), get_bloginfo( 'description', 'display' )); ?>
+					</div>
+				</div>
+			</div>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
