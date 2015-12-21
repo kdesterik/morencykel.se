@@ -45,12 +45,26 @@
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo file_get_contents( get_template_directory() . '/images/morencykel-logo.svg' ); ?></a>
 						</div>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-						<nav id="navigation" class="site-navigation text-right" role="navigation">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+						<nav id="navigation" class="site-navigation" role="navigation">
 							<ul>
-								<li><strong>cart</strong></li>
-								<li><strong><a href="#search" title="search" data-toggle="modal" data-target="#search">search</a></strong></li>
-								<li><strong><a href="#mmenu" title="menu">menu</a></strong></li>
+								<li>
+									<a href="#cart" title="cart" data-toggle="dropdown">cart</a>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li>Your cart is currently empty.</li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Another action</a></li>
+										<li><a href="#">Something else here</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Separated link</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#search" title="search" data-toggle="modal" data-target="#search">search</a>
+								</li>
+								<li>
+									<a href="#mmenu" title="menu">menu</a>
+								</li>
 							</ul>
 						</nav>
 					</div>
