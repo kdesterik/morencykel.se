@@ -25,9 +25,25 @@ module.exports = function(grunt) {
 				cwd: '<%= config.src %>/',
 				src: [ 
 					'**',
-					'!styles/**'
+					'!icons/**',
+					'!styles/**',
 				]
 			},
+		},
+
+		webfont: {
+			default: {
+				src: '<%= config.src %>/icons/*.svg',
+				dest: '<%= config.dist %>/fonts/',
+				destCss: '<%= config.src %>/styles/core/',
+				options: {
+					engine: 'node',
+					font: 'icons',
+					stylesheet: 'less',
+					relativeFontPath: './fonts/',
+					destHtml: '<%= config.src %>/icons/'
+				}
+			}
 		},
 
 		jshint: {
@@ -53,8 +69,12 @@ module.exports = function(grunt) {
 		bower_concat: {
 			default: {
 				dest: '<%= config.dist %>/js/libs.js',
-				dependencies: {},
-				exclude: [],
+				dependencies: {
+					'jQuery.mmenu': 'jquery'
+				},
+				exclude: [
+					'jquery'
+				],
 			    mainFiles: {}
 			}
 		},
@@ -73,20 +93,6 @@ module.exports = function(grunt) {
 					'<%= config.dist %>/style.css': '<%= config.src %>/styles/style.less'
 				}
 			}
-		},
-
-		uglify: {
-			development: {
-				files: {
-					'<%= config.dist %>/js/libs.js': '<%= config.dist %>/js/libs.js'
-				}
-			},
-			acceptance: {
-				files: {
-					'<%= config.dist %>/js/libs.js': '<%= config.dist %>/js/libs.js',
-					'<%= config.dist %>/js/scripts.js': '<%= config.dist %>/js/scripts.js'
-				}
-			},
 		},
 
 		autoprefixer: {
@@ -110,19 +116,18 @@ module.exports = function(grunt) {
 			},
 		},
 
-		webfont: {
-			icons: {
-				src: '<%= config.src %>/icons/*.svg',
-				dest: '<%= config.dist %>/fonts/',
-				destCss: '<%= config.src %>/styles/core/',
-				options: {
-					engine: 'node',
-					font: 'icons',
-					stylesheet: 'less',
-					relativeFontPath: './fonts/',
-					destHtml: '<%= config.src %>/icons/'
+		uglify: {
+			development: {
+				files: {
+					'<%= config.dist %>/js/libs.js': '<%= config.dist %>/js/libs.js'
 				}
-			}
+			},
+			acceptance: {
+				files: {
+					'<%= config.dist %>/js/libs.js': '<%= config.dist %>/js/libs.js',
+					'<%= config.dist %>/js/scripts.js': '<%= config.dist %>/js/scripts.js'
+				}
+			},
 		},
 
 		watch: {
@@ -171,6 +176,7 @@ module.exports = function(grunt) {
 
 		'clean:default',
 		'copy:default',
+		'webfont:default',
 		'jshint:default',
 		'concat:default',
 		'bower_concat:default',
@@ -181,7 +187,7 @@ module.exports = function(grunt) {
 		'default',
 		'less:development',
 		'autoprefixer:development',
-		'uglify:development',
+		// 'uglify:development',
 	]);
 
 	grunt.registerTask( 'development', [

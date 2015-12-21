@@ -1,10 +1,79 @@
 .site-footer {
 
-	background-color: @white;
-	padding: ( @line-height-computed * 2 ) 0 @line-height-computed;
+	// border-right: 1px solid @white;
+	height: ( @line-height-computed * 5 );
+	padding: ( @line-height-computed * 2 ) 0 0;
 
 	.site-info {
 
-		color: @gray-darker;
+		// color: @gray;
+	}
+
+	.widget-area {
+
+		.menu {
+
+			padding: 0;
+			list-style: none;
+
+			.menu-item {
+
+				display: inline-block;
+				margin-left: @line-height-computed;
+
+				a {
+					color: @white;
+					display: block;
+					height: @line-height-computed;
+					overflow: hidden;
+					position: relative;
+					text-indent: ( @line-height-computed * 2 );
+					width: @line-height-computed;
+
+					&:before {
+
+						display: inline-block;
+						font-family: "icons";
+						font-size: @line-height-computed;
+						font-style: normal;
+						font-weight: normal;
+						left: -( @line-height-computed * 2 );
+						line-height: 1;
+						position: absolute;
+						speak: none;
+						text-decoration: inherit;
+						text-transform: none;
+						text-rendering: auto;
+						top: 0;
+						vertical-align: middle;
+						-webkit-font-smoothing: antialiased;
+						-moz-osx-font-smoothing: grayscale;
+					}
+
+					&:hover, &:focus {
+
+						color: @brand-primary;
+					}
+				}
+
+				a[href*="facebook.com"]{
+					&:before {
+						content: "\f101";
+					}
+				}
+
+				a[href*="instagram.com"]{
+					&:before {
+						content: "\f102";
+					}
+				}
+
+				a[href*="pinterest.com"]{
+					&:before {
+						content: "\f103";
+					}
+				}
+			}
+		}
 	}
 }

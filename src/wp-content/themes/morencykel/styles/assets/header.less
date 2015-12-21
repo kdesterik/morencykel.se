@@ -1,0 +1,24 @@
+.site-header {
+
+	height: ( @line-height-computed * 8 );
+	padding: @line-height-computed 0 0;
+
+	.site-branding {}
+
+	.site-navigation {
+
+		ul {
+			padding: 9px 0 0;
+			list-style: none;
+
+			> li {
+				display: inline-block;
+
+				+ li:before {
+					content: "//\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+					color: @gray-darker;
+				}
+			}
+		}
+	}
+}

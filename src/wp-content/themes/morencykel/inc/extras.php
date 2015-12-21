@@ -27,3 +27,17 @@ function morencykel_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'morencykel_body_classes' );
+
+
+/**
+ * Renders the featered image of a post as an inline background-image style
+ *
+ * @return string
+ */
+function the_background_image(){
+
+	if( has_post_thumbnail() ){
+
+		printf( 'style="background-image: url( %s );"', wp_get_attachment_url( get_post_thumbnail_id( $post->ID )));
+	}
+}

@@ -6,21 +6,46 @@
 
 h1, h2, h3, h4 {
 
-	margin: 0 0 @line-height-computed;
+	margin: 0 0 0 0;
 
 	&:before {
 		content: '';
 		display: inline-block;
 		vertical-align: baseline;
-		height: ( @line-height-computed * 2 );
 	}
 
 	&:after {
 		content: '';
 		display: inline-block;
 		vertical-align: -@line-height-computed;
-		height: ( @line-height-computed * 2 );
 	}
+}
+
+h1, h2 {
+	&:before {
+		height: ( @line-height-computed * 3 );
+	}
+	&:after {
+		height: ( @line-height-computed * 3 );
+	}	
+}
+
+h2 {
+	font-weight: normal;
+}
+
+h3, h4 {
+	&:before {
+		height: @line-height-computed;
+	}
+
+	&:after {
+		height: @line-height-computed;
+	}	
+}
+
+h4 {
+	font-weight: normal;
 }
 
 // Body text
