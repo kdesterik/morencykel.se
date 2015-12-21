@@ -6,8 +6,8 @@ Template Name: Home
 
 <?php get_header(); ?>
 
-	<div id="primary" class="content-area" <?php the_background_image(); ?>>
-		<main id="main" class="site-main" role="main">
+		<div id="primary" class="content-area" <?php the_background_image(); ?>>
+			<main id="main" class="site-main" role="main">
 				<?php while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<div class="container">
@@ -17,14 +17,13 @@ Template Name: Home
 									<?php the_content(); ?>
 								</header>
 								<div class="entry-content"></div>
-								<footer class="entry-footer"></footer>								
+								<footer class="entry-footer"></footer>
 							</div>
 						</div>
 					</div>
 				</article>
 				<?php endwhile; ?>
-			</div>
-		</main>
-	</div>
+			</main>
+		</div>
 
 <?php get_footer(); ?>

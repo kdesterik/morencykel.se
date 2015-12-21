@@ -1,0 +1,30 @@
+// Container that the modal scrolls within
+.modal {
+
+	.modal-dialog {
+
+		margin: ( @line-height-computed * 8 ) 0 0 0;
+		width: auto;
+
+		.modal-content {
+
+			background-clip: border-box;
+			background-color: transparent;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;    
+			outline: 0;
+			position: relative;
+
+			.modal-body {
+
+				padding: 0 0 0 0;
+			}	
+		}
+	}
+
+	&.fade .modal-dialog {
+
+		.translate( 0, 0 );
+	}
+}

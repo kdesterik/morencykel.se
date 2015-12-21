@@ -154,6 +154,16 @@ require get_template_directory() . '/inc/jetpack.php';
 
 
 /**
+ * Adjust length of excerpt
+ */ 
+function twentyfifteen_child_excerpt_length( $length ) {
+
+	return 20;
+}
+add_filter( 'excerpt_length', 'twentyfifteen_child_excerpt_length', 999 );
+
+
+/**
  * Enable livereload on localhost
  */
 function livereload() {

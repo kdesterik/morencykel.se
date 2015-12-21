@@ -23,6 +23,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 // Core variables and mixins
 @import './bower_components/bootstrap/less/variables.less';
 @import './bower_components/bootstrap/less/mixins.less';
+@import './bower_components/bootstrap/less/component-animations.less';
 
 // Dependencies
 @import './core/fonts.less';
@@ -43,8 +44,13 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @import './core/grid.less';
 
 // Components
-@import './bower_components/bootstrap/less/component-animations.less';
 @import './bower_components/bootstrap/less/dropdowns.less';
+
+// Components w/ JavaScript
+@import './bower_components/bootstrap/less/modals.less';
+
+// Overwrite components w/ JavaScript
+@import './components/modals.less';
 
 // Utility classes
 @import './bower_components/bootstrap/less/utilities.less';
@@ -59,5 +65,6 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 
 // Templates
 @import './templates/home.less';
+@import './templates/search-results.less';
 
 // Plugins
