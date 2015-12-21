@@ -45,7 +45,7 @@ if ( ! function_exists( 'morencykel_entry_footer' ) ) :
  */
 function morencykel_entry_footer() {
 	
-	printf( '<p><a href="%1$s" title="%2$s">%1$s</a></p>', get_the_permalink(), get_the_title() );
+	printf( '<p class="small"><a href="%1$s" title="%2$s">%1$s</a></p>', get_the_permalink(), get_the_title() );
 }
 endif;
 

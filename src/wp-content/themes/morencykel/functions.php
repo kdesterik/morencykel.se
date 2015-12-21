@@ -163,6 +163,23 @@ function twentyfifteen_child_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'twentyfifteen_child_excerpt_length', 999 );
 
 
+/*
+* Replace WooCommerce placeholder image with own
+*
+**/
+add_action( 'init', 'custom_fix_thumbnail' );
+ 
+function custom_fix_thumbnail(){
+
+	add_filter( 'woocommerce_placeholder_img_src', 'custom_woocommerce_placeholder_img_src' );
+   
+	function custom_woocommerce_placeholder_img_src(){
+
+		return get_template_directory_uri() . '/images/placeholder.png';
+	}
+}
+
+
 /**
  * Enable livereload on localhost
  */

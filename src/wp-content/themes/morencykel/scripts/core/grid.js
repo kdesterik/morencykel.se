@@ -12,7 +12,10 @@
 
 			} else {
 
-				$( '.grid' ).css({ 'display': 'block' });
+				$( '.grid' ).css({ 
+					'display': 'block',
+					'height': $( document ).height()
+				});
 			}
 		}   				
 	});

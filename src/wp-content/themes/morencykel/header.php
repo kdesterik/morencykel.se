@@ -42,7 +42,7 @@
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="site-branding">
-							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo file_get_contents( get_template_directory() . '/images/morencykel-logo.svg' ); ?></a>
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo file_get_contents( get_template_directory_uri() . '/images/morencykel-logo.svg' ); ?></a>
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
@@ -51,12 +51,10 @@
 								<li>
 									<a href="#cart" title="cart" data-toggle="dropdown">cart</a>
 									<ul class="dropdown-menu dropdown-menu-right">
-										<li>Your cart is currently empty.</li>
+										<li><a href="#">Summary</a></li>
+										<li><a href="#">Of all products</a></li>
 										<li role="separator" class="divider"></li>
-										<li><a href="#">Another action</a></li>
-										<li><a href="#">Something else here</a></li>
-										<li role="separator" class="divider"></li>
-										<li><a href="#">Separated link</a></li>
+										<li></li>
 									</ul>
 								</li>
 								<li>

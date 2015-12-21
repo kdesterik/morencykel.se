@@ -55,10 +55,34 @@
 @font-size-h4:            26px;
 @font-size-h5:            16px;
 @font-size-h6:            16px;
-@line-height-base:        1.5625; // 24/16
+@line-height-base:        1.5625; // 25/16
 
 //** By default, this inherits from the `<body>`.
 @headings-font-weight:    bold;
+
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+@padding-base-vertical:     6px;
+@padding-base-horizontal:   25px;
+
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+@btn-font-weight:                bold;
+
+@btn-default-color:              @gray;
+@btn-default-bg:                 @white;
+@btn-default-border:             @white;
+
+@btn-primary-color:              @gray-darker;
+@btn-primary-bg:                 @brand-primary;
+@btn-primary-border:             @brand-primary;
+
 
 
 //== Grid system
@@ -107,3 +131,11 @@
 @modal-backdrop-bg:           @gray-darker;
 //** Modal backdrop opacity
 @modal-backdrop-opacity:      1;
+
+
+//== Type
+//
+//##
+
+//** Page header border color
+@page-header-border-color:    @white;
