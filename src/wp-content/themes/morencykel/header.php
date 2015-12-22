@@ -51,10 +51,9 @@
 								<li>
 									<a href="#cart" title="cart" data-toggle="dropdown">cart</a>
 									<ul class="dropdown-menu dropdown-menu-right">
-										<li><a href="#">Summary</a></li>
-										<li><a href="#">Of all products</a></li>
-										<li role="separator" class="divider"></li>
-										<li></li>
+										<li>
+											<?php woocommerce_mini_cart(); ?>
+										</li>
 									</ul>
 								</li>
 								<li>

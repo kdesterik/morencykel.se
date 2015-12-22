@@ -27,6 +27,48 @@
 					content: "//";
 					color: @gray-darker;
 				}
+
+				.dropdown-menu {
+
+					color: @gray;
+					min-width: 280px;
+					padding: 0;
+
+					li {
+
+						.cart_list {
+
+							list-style: none;
+							padding: 0;
+
+							.empty {
+
+								font-weight: normal;
+								padding: @line-height-computed 0;
+								text-align: center;
+							}
+						}
+
+						.btn-group-justified {
+
+							border-top: 1px solid @gray-light;
+							margin-top: @line-height-computed;
+
+							.btn-group {
+
+								.btn {
+
+									border-radius: 0;
+								}
+
+								&:first-child {
+
+									border-right: 1px solid @gray-light;									
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
