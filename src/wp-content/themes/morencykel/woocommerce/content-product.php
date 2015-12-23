@@ -42,8 +42,10 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] ) {
 	$classes[] = 'last';
 }
 ?>
-<li <?php post_class( $classes ); ?>>
 
+
+<div <?php post_class( 'col-xs-3 col-sm-3 col-md-3 col-lg-3', $classes ); ?>>
+	
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
 	<a href="<?php the_permalink(); ?>">
@@ -86,4 +88,4 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] ) {
 
 	?>
 
-</li>
+</div>

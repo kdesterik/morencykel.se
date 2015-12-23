@@ -1,0 +1,41 @@
+.form-control {
+
+	box-shadow: none;
+	margin-bottom: @line-height-computed;
+	padding-top: 13px;
+	padding-bottom: 9px;
+
+	&:focus {
+
+		box-shadow: none;
+	}
+
+	&.select2-container {
+
+		border: none;
+		line-height: ( @line-height-computed * 2 );
+		padding: 0;
+
+		.select2-choice {
+
+			border-color: @white;
+			color: @gray;
+			font-weight: bold;
+			text-transform: lowercase;
+		}
+	}
+}
+
+.select2-drop {
+
+	border-color: @white;
+	color: @gray;
+	font-weight: bold;
+	text-transform: lowercase;
+
+	.select2-highlighted {
+
+		background-color: @brand-primary;
+		color: @gray-darker;
+	}
+}

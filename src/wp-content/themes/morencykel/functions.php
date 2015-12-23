@@ -133,6 +133,11 @@ add_action( 'wp_enqueue_scripts', 'morencykel_scripts' );
 require get_template_directory() . '/inc/custom-header.php';
 
 /**
+ * Custom template functions for this theme.
+ */
+require get_template_directory() . '/inc/template-functions.php';
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
@@ -167,17 +172,76 @@ add_filter( 'excerpt_length', 'twentyfifteen_child_excerpt_length', 999 );
 * Replace WooCommerce placeholder image with own
 *
 **/
-add_action( 'init', 'custom_fix_thumbnail' );
- 
-function custom_fix_thumbnail(){
+function morencykel_woocommerce_placeholder_img_src(){
 
-	add_filter( 'woocommerce_placeholder_img_src', 'custom_woocommerce_placeholder_img_src' );
-   
-	function custom_woocommerce_placeholder_img_src(){
-
-		return get_template_directory_uri() . '/images/placeholder.png';
-	}
+	return get_template_directory_uri() . '/images/placeholder.png';
 }
+add_filter( 'woocommerce_placeholder_img_src', 'morencykel_woocommerce_placeholder_img_src' );
+
+
+/*
+* Adjust WooCommerce default address fields
+*
+**/
+function morencykel_woocommerce_default_address_fields( $fields ){
+
+	$fields[ 'first_name' ][ 'placeholder' ] 	= $fields[ 'first_name' ][ 'label' ];
+	$fields[ 'first_name' ][ 'class' ] 			= array( 'col-xs-6 col-sm-6 col-md-6 col-lg-6' );
+	$fields[ 'last_name' ][ 'placeholder' ] 	= $fields[ 'last_name' ][ 'label' ];
+	$fields[ 'last_name' ][ 'class' ] 			= array( 'col-xs-6 col-sm-6 col-md-6 col-lg-6' );
+	$fields[ 'company' ][ 'placeholder' ] 		= $fields[ 'company' ][ 'label' ];
+	$fields[ 'company' ][ 'class' ] 			= array( 'col-xs-12 col-sm-12 col-md-12 col-lg-12' );
+	$fields[ 'country' ][ 'class' ] 			= array( 'col-xs-12 col-sm-12 col-md-12 col-lg-12', 'address-field', 'update_totals_on_change' );
+	$fields[ 'address_1' ][ 'class' ] 			= array( 'col-xs-12 col-sm-12 col-md-12 col-lg-12', 'address-field' );
+	$fields[ 'address_2' ][ 'class' ] 			= array( 'col-xs-12 col-sm-12 col-md-12 col-lg-12', 'address-field' );
+	$fields[ 'city' ][ 'class' ] 				= array( 'col-xs-6 col-sm-6 col-md-6 col-lg-6', 'address-field' );
+	$fields[ 'state' ][ 'class' ] 				= array( 'col-xs-6 col-sm-6 col-md-6 col-lg-6', 'address-field' );
+	$fields[ 'postcode' ][ 'class' ] 			= array( 'col-xs-6 col-sm-6 col-md-6 col-lg-6', 'address-field' );
+
+	return $fields;
+}
+add_filter( 'woocommerce_default_address_fields', 'morencykel_woocommerce_default_address_fields' );
+
+
+
+/*
+* Remove default Woocommerce functionality
+*
+*/
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
+
+
+/*
+* Add MorenCykel Woocommerce functionality
+*
+*/
+add_action( 'woocommerce_after_main_content', 'morencykel_woocommerce_breadcrumb', 20, 0 );
+
+
+/*
+* Adjust WooCommerce billing fields
+*
+**/
+function morencykel_woocommerce_billing_fields( $fields ){
+
+	$fields[ 'billing_email' ][ 'placeholder' ] = $fields[ 'billing_email' ][ 'label' ];
+	$fields[ 'billing_email' ][ 'class' ] 		= array( 'col-xs-6 col-sm-6 col-md-6 col-lg-6' );
+	$fields[ 'billing_phone' ][ 'placeholder' ] = $fields[ 'billing_phone' ][ 'label' ];
+	$fields[ 'billing_phone' ][ 'class' ] 		= array( 'col-xs-6 col-sm-6 col-md-6 col-lg-6' );
+
+	return $fields;
+}
+add_filter( 'woocommerce_billing_fields', 'morencykel_woocommerce_billing_fields' );
 
 
 /**

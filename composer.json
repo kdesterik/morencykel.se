@@ -12,6 +12,7 @@
         "johnpbloch/wordpress": "4.4",
         "wpackagist-plugin/wp-mmenu-lite": "1.0.0",
         "wpackagist-plugin/woocommerce": "2.4.12",
+        "wpackagist-plugin/wordpress-importer": "0.6.1",
         "wp-sync-db/wp-sync-db": "dev-master"
     },
 
@@ -28,6 +29,7 @@
             "./dist/wp-content/plugins/{$name}": [
                 "wpackagist-plugin/wp-mmenu-lite",
                 "wpackagist-plugin/woocommerce",
+                "wpackagist-plugin/wordpress-importer",
                 "wp-sync-db/wp-sync-db"
             ]
         }

@@ -1,5 +1,6 @@
 .btn {
 
+	margin-bottom: @line-height-computed;
 	padding-top: 13px;
 	padding-bottom: 10px;
 	text-transform: lowercase;
@@ -9,6 +10,24 @@
 	&.focus {
 		background-color: @brand-primary;
 		border-color: @brand-primary;
+		color: @gray-darker;
+		outline: none;
+
+		&:active,
+		&.active {
+			background-color: darken( @brand-primary, 15% );
+			border-color: darken( @brand-primary, 15% );
+			box-shadow: none;
+			color: @gray-darker;
+			outline: none;
+		}
+	}
+
+	&:active,
+	&.active {
+		background-color: darken( @brand-primary, 15% );
+		border-color: darken( @brand-primary, 15% );
+		box-shadow: none;
 		color: @gray-darker;
 	}
 }
