@@ -1,8 +1,22 @@
 .site-breadcrumbs {
 
-	.woocommerce-breadcrumb {
+	ul {
 
-		margin-top: @line-height-computed;
-		padding-top: 9px;
+		font-weight: bold;
+		list-style: none;
+		padding: 9px 0 0;
+		text-transform: lowercase;
+
+		> li {
+
+			display: inline-block;
+			position: relative;
+
+			+ li:before {
+
+				content: "//";
+				color: @gray-darker;
+			}
+		}
 	}
 }

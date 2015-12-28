@@ -1,4 +1,5 @@
 .DS_Store
+.ftppass
 /dist/
 /bower_components/
 /node_modules/

@@ -8,7 +8,6 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 
 		config: grunt.file.readJSON( 'config.json' ),
-		credentials: grunt.file.readJSON( 'credentials.json' ),
 
 		clean: {
 			default: {
@@ -26,6 +25,7 @@ module.exports = function(grunt) {
 				src: [ 
 					'**',
 					'!icons/**',
+					'!scripts/**',
 					'!styles/**',
 				]
 			},
@@ -151,25 +151,18 @@ module.exports = function(grunt) {
 			}
 		},
 
-		sftp: {
-			test: {
-				files: {
-					"./": [ 
-						"./dist/wp-content/themes/twentyfifteen-child/**",
-						"./dist/wp-content/plugins/**"
-					]
+		'ftp-deploy': {
+			acceptance: {
+				auth: {
+					host: 'ftpcluster.loopia.se',
+					port: 21,
+					authKey: 'key',
 				},
-				options: {
-					path: '/var/www/html/112_0003/wp-content/',
-					srcBasePath: './dist/wp-content/',
-					host: '<%= credentials.host %>',
-					username: '<%= credentials.username %>',
-					password: '<%= credentials.password %>',
-					createDirectories: true,
-					showProgress: true
-				}
+				src: '<%= config.dist %>',
+				dest: '/acceptance.morencykel.se/public_html/wp-content/themes/morencykel/',
+				exclusions: [ '<%= config.dist %>/**/.DS_Store' ]
 			}
-		},
+		}
 	});
 
 	grunt.registerTask( 'default', [
@@ -197,22 +190,13 @@ module.exports = function(grunt) {
 		'watch:development'
 	]);
 
-	grunt.registerTask( 'test', [
-
-		'default',
-		'less:development',
-		'autoprefixer:development',
-		'uglify:development',
-		'sftp:test',
-	]);
-
 	grunt.registerTask( 'acceptance', [
 
 		'default',
 		'less:acceptance',
 		'autoprefixer:acceptance',
 		'uglify:acceptance',
-		'sftp:acceptance',
+		'ftp-deploy:acceptance',
 	]);
 
 	// grunt.registerTask( 'production', [
@@ -221,6 +205,6 @@ module.exports = function(grunt) {
 	// 	'less:acceptance',
 	// 	'autoprefixer:acceptance',
 	// 	'uglify:acceptance',
-	//  'sftp:production',
+	//  'ftp-deploy:production',
 	// ]);
 };

@@ -14,28 +14,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $post, $woocommerce, $product;
 
 ?>
-<div class="images">
 
+
+<!-- <div class="product-zoom" data-target="<?php // echo $this->helper('catalog/image')->init($_product, 'image'); ?>"> -->
+<!-- <img src="<?php // echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php // echo $this->stripTags($_product->getName(), null, true); ?>" class="normal" /> -->
+<!-- </div> -->
+
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 	<?php
-		if ( has_post_thumbnail() ) {
+		if( has_post_thumbnail() ){
 
-			$image_title 	= esc_attr( get_the_title( get_post_thumbnail_id() ) );
-			$image_caption 	= get_post( get_post_thumbnail_id() )->post_excerpt;
 			$image_link  	= wp_get_attachment_url( get_post_thumbnail_id() );
+			$image_title 	= esc_attr( get_the_title( get_post_thumbnail_id() ));
 			$image       	= get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_large_thumbnail_size', 'shop_single' ), array(
 				'title'	=> $image_title,
 				'alt'	=> $image_title
-				) );
+			));
 
-			$attachment_count = count( $product->get_gallery_attachment_ids() );
-
-			if ( $attachment_count > 0 ) {
-				$gallery = '[product-gallery]';
-			} else {
-				$gallery = '';
-			}
-
-			echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<a href="%s" itemprop="image" class="woocommerce-main-image zoom" title="%s" data-rel="prettyPhoto' . $gallery . '">%s</a>', $image_link, $image_caption, $image ), $post->ID );
+			echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<div class="product-zoom" data-target="%1$s">%2$s</div>', $image_link, $image ), $post->ID );
 
 		} else {
 
@@ -43,7 +39,5 @@ global $post, $woocommerce, $product;
 
 		}
 	?>
-
 	<?php do_action( 'woocommerce_product_thumbnails' ); ?>
-
 </div>

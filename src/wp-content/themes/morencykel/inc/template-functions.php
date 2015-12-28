@@ -230,7 +230,7 @@ if ( ! function_exists( 'morencykel_woocommerce_form_field' ) ) {
 
 
 
-if ( ! function_exists( 'woocommerce_breadcrumb' ) ) {
+if ( ! function_exists( 'morencykel_woocommerce_breadcrumb' ) ) {
 
 	/**
 	 * Output the WooCommerce Breadcrumb
@@ -238,8 +238,8 @@ if ( ! function_exists( 'woocommerce_breadcrumb' ) ) {
 	function morencykel_woocommerce_breadcrumb( $args = array() ) {
 		$args = wp_parse_args( $args, apply_filters( 'woocommerce_breadcrumb_defaults', array(
 			'delimiter'   => '&nbsp;&#47;&nbsp;',
-			'wrap_before' => '<div id="breadcrumbs" class="site-breadcrumbs" role="navigation"><div class="container"><div class="row"><div class="col-xs12 col-md-12 col-sm-12 col-xs-12"><nav class="woocommerce-breadcrumb down" ' . ( is_single() ? 'itemprop="breadcrumb"' : '' ) . '>',
-			'wrap_after'  => '</nav></div></div></div></div>',
+			'wrap_before' => '<div id="breadcrumbs" class="site-breadcrumbs" role="navigation"><div class="container"><div class="row"><div class="col-xs12 col-md-12 col-sm-12 col-xs-12"><ul class="down" ' . ( is_single() ? 'itemprop="breadcrumb"' : '' ) . '>',
+			'wrap_after'  => '</ul></div></div></div></div>',
 			'before'      => '',
 			'after'       => '',
 			'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' )
@@ -256,6 +256,7 @@ if ( ! function_exists( 'woocommerce_breadcrumb' ) ) {
 		wc_get_template( 'global/breadcrumb.php', $args );
 	}
 }
+
 
 
 ?>

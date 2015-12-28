@@ -21,21 +21,6 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<div class="modal fade" id="search" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<?php echo get_search_form( $echo ); ?>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div id="content" class="site-content">
 		<header id="header" class="site-header" role="banner">
 			<div class="container">
@@ -57,7 +42,12 @@
 									</ul>
 								</li>
 								<li>
-									<a href="#search" title="search" data-toggle="modal" data-target="#search">search</a>
+									<a href="#search" title="search" data-toggle="dropdown">search</a>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li>
+											<?php echo get_search_form( $echo ); ?>
+										</li>
+									</ul>
 								</li>
 								<li>
 									<a href="#mmenu" title="menu">menu</a>

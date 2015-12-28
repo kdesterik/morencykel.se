@@ -13,6 +13,8 @@
         "wpackagist-plugin/wp-mmenu-lite": "1.0.0",
         "wpackagist-plugin/woocommerce": "2.4.12",
         "wpackagist-plugin/wordpress-importer": "0.6.1",
+        "wpackagist-plugin/regenerate-thumbnails": "2.2.5",
+        "wpackagist-plugin/mce-table-buttons": "3.2",
         "wp-sync-db/wp-sync-db": "dev-master"
     },
 
@@ -30,6 +32,8 @@
                 "wpackagist-plugin/wp-mmenu-lite",
                 "wpackagist-plugin/woocommerce",
                 "wpackagist-plugin/wordpress-importer",
+                "wpackagist-plugin/regenerate-thumbnails",
+                "wpackagist-plugin/mce-table-buttons",
                 "wp-sync-db/wp-sync-db"
             ]
         }

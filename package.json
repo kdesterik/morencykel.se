@@ -25,7 +25,6 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-ftp-deploy": "^0.1.10",
     "grunt-open": "^0.2.3",
-    "grunt-ssh": "^0.12.6",
     "grunt-webfont": "^1.1.0",
     "jshint-stylish": "^2.0.1",
     "load-grunt-tasks": "^3.2.0"

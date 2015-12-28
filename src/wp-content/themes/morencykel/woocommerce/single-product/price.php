@@ -16,7 +16,7 @@ global $product;
 ?>
 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
-	<p class="price"><?php echo $product->get_price_html(); ?></p>
+	<h4 class="price"><?php echo $product->get_price_html(); ?></4>
 
 	<meta itemprop="price" content="<?php echo esc_attr( $product->get_price() ); ?>" />
 	<meta itemprop="priceCurrency" content="<?php echo esc_attr( get_woocommerce_currency() ); ?>" />

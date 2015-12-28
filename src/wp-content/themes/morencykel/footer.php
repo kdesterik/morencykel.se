@@ -28,7 +28,14 @@
 			</div>
 		</div>
 	</footer>
-	<div class="grid"></div>
+	<div class="grid">
+		<div class="squares"></div>
+		<div class="baselines"></div>
+		<div class="guides">
+			<div class="left"></div>
+			<div class="right"></div>
+		</div>
+	</div>
 </div>
 
 <?php wp_footer(); ?>

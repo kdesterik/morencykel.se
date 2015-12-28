@@ -14,4 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<p class="woocommerce-info"><?php _e( 'No products were found matching your selection.', 'woocommerce' ); ?></p>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<div class="alert alert-info" role="alert"><?php _e( 'No products were found matching your selection.', 'woocommerce' ); ?></div>	
+</div>
