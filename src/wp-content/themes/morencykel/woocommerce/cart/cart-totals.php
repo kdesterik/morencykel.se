@@ -12,13 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div class="cart_totals <?php if ( WC()->customer->has_calculated_shipping() ) echo 'calculated_shipping'; ?>">
+
+<div class="row">
+	<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"></div>
+	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+<!-- <div class="cart_totals <?php if ( WC()->customer->has_calculated_shipping() ) echo 'calculated_shipping'; ?>"> -->
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
-	<h2><?php _e( 'Cart Totals', 'woocommerce' ); ?></h2>
-
-	<table cellspacing="0">
+	<table class="table" cellspacing="0">
 
 		<tr class="cart-subtotal">
 			<th><?php _e( 'Subtotal', 'woocommerce' ); ?></th>
@@ -95,12 +98,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?></small></p>
 	<?php endif; ?>
 
-	<div class="wc-proceed-to-checkout">
-
-		<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
-
-	</div>
+	<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
 
 	<?php do_action( 'woocommerce_after_cart_totals' ); ?>
 
+<!-- </div> -->
+	</div>
 </div>
